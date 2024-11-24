@@ -22,4 +22,6 @@
     <string name="prompt_major">Major</string>
     <string name="prompt_description">Describe your personality, interest, goal, career briefly</string>
     <string name="picture">picture</string>
+    <string name="review">Review My Answer</string>
+    <string name="lorem_placeholder">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doeiusmod tempor incididunt ut labore et dolore</string>
 </resources>

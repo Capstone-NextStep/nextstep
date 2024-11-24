@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_white"
+    android:padding="16dp">
+
+    <TableLayout
+        android:id="@+id/table_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TableRow>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/dotted_border"
+                android:padding="8dp"
+                android:text="Categories"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/dotted_border"
+                android:padding="8dp"
+                android:text="Scores"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="236dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/dotted_border"
+                android:padding="8dp"
+                android:text="Description"
+                android:textStyle="bold" />
+
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:background="@drawable/dotted_border"
+                android:padding="8dp"
+                android:text="Realistic" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:background="@drawable/dotted_border"
+                android:padding="8dp"
+                android:text="70%" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:background="@drawable/dotted_border"
+                android:padding="8dp"
+                android:text="@string/lorem_placeholder" />
+
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:background="@drawable/dotted_border"
+                android:padding="8dp"
+                android:text="Artistic" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:background="@drawable/dotted_border"
+                android:padding="8dp"
+                android:text="65%" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:background="@drawable/dotted_border"
+                android:padding="8dp"
+                android:text="Has a talent for visual arts or creative writing." />
+
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:background="@drawable/dotted_border"
+                android:padding="8dp"
+                android:text="Social" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:background="@drawable/dotted_border"
+                android:padding="8dp"
+                android:text="75%" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:background="@drawable/dotted_border"
+                android:padding="8dp"
+                android:text="Enjoys activities involving communication and collaboration." />
+
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:background="@drawable/dotted_border"
+                android:padding="8dp"
+                android:text="Enterprising" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:background="@drawable/dotted_border"
+                android:padding="8dp"
+                android:text="50%" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:background="@drawable/dotted_border"
+                android:padding="8dp"
+                android:text="Interested in leading projects but lacks dominance in decision-making." />
+
+        </TableRow>
+    </TableLayout>
+
+    <TextView
+        android:id="@+id/tv_traits"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Core Character Traits"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/table_result" />
+
+    <TextView
+        android:id="@+id/tv_trait_desc1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:drawableStartCompat="@drawable/text_bullet"
+        app:layout_constraintTop_toBottomOf="@id/tv_traits"
+        app:layout_constraintStart_toStartOf="@id/tv_traits"
+        android:text="Realistic: Practical and prefers tangible outcomes."
+        android:drawablePadding="8dp"
+        android:layout_marginTop="4dp"
+        />
+
+    <TextView
+        android:id="@+id/tv_trait_desc2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:drawableStartCompat="@drawable/text_bullet"
+        app:layout_constraintTop_toBottomOf="@id/tv_trait_desc1"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="Artistic : Creative and enjoys self-expression."
+        android:drawablePadding="8dp"
+        android:layout_marginTop="4dp"
+        />
+
+    <TextView
+        android:id="@+id/tv_trait_desc3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:drawableStartCompat="@drawable/text_bullet"
+        app:layout_constraintTop_toBottomOf="@id/tv_trait_desc2"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="Social: Empathetic and thrives in interactive environments"
+        android:drawablePadding="8dp"
+        android:layout_marginTop="4dp"
+        />
+
+    <TextView
+        android:id="@+id/tv_trait_desc4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:drawableStartCompat="@drawable/text_bullet"
+        app:layout_constraintTop_toBottomOf="@id/tv_trait_desc3"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="Enterprising (moderate) : Motivated to take initiative without dominating decision-making."
+        android:drawablePadding="8dp"
+        android:layout_marginTop="4dp"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

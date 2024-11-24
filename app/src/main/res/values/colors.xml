@@ -7,4 +7,5 @@
     <color name="button_disabled">#A3BAFF</color>
     <color name="disabled">#A3BAFF</color>
     <color name="text_color_black">#25282B</color>
+    <color name="table_border">#9747FF</color>
 </resources>
