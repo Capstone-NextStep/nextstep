@@ -8,4 +8,5 @@
     <color name="disabled">#A3BAFF</color>
     <color name="text_color_black">#25282B</color>
     <color name="table_border">#9747FF</color>
+    <color name="item_bg">#D9D9D9</color>
 </resources>

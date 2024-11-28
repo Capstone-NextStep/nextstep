@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:text="Please answer the question below accordingly"
+        android:text="@string/txt_text_prompt"
         android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="@color/white"
@@ -31,7 +31,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="@id/tv_test_title"
         app:layout_constraintTop_toBottomOf="@id/tv_test_title"
-        android:text="Question 1"
+        android:text="@string/txt_question_1"
         android:textSize="16sp"
         android:textStyle="bold"
         android:textColor="@color/white"
@@ -42,7 +42,7 @@
     <ImageView
         android:id="@+id/iv_question1_bg"
         android:layout_width="380dp"
-        android:layout_height="240dp"
+        android:layout_height="160dp"
         android:background="@drawable/bg_white"
         app:layout_constraintTop_toBottomOf="@id/tv_question1"
         app:layout_constraintStart_toStartOf="parent"
@@ -61,40 +61,16 @@
         android:text="@string/lorem_placeholder"
         />
 
-    <RadioGroup
-        android:id="@+id/rg_test_1"
+    <Spinner
+        android:id="@+id/tv_test_spinner1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+
         app:layout_constraintTop_toBottomOf="@id/tv_test_1"
         app:layout_constraintStart_toStartOf="@id/iv_question1_bg"
         android:layout_marginStart="16dp"
-        >
-
-        <RadioButton
-            android:id="@+id/rb_answer_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="1"/>
-
-        <RadioButton
-            android:id="@+id/rb_answer_2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="2"/>
-
-        <RadioButton
-            android:id="@+id/rb_answer_3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="3"/>
-
-        <RadioButton
-            android:id="@+id/rb_answer_4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="4"/>
-
-    </RadioGroup>
+        android:layout_margin="16dp"
+        />
 
     <TextView
         android:id="@+id/tv_question2"
@@ -102,7 +78,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="@id/tv_test_title"
         app:layout_constraintTop_toBottomOf="@id/iv_question1_bg"
-        android:text="Question 2"
+        android:text="@string/txt_question_2"
         android:textSize="16sp"
         android:textStyle="bold"
         android:textColor="@color/white"
@@ -132,10 +108,10 @@
         />
 
     <Spinner
-        android:id="@+id/tv_test_spinner"
+        android:id="@+id/tv_test_spinner2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:prompt="Choose One"
+
         app:layout_constraintTop_toBottomOf="@id/tv_test_2"
         app:layout_constraintStart_toStartOf="@id/iv_question2_bg"
         android:layout_marginStart="16dp"
@@ -148,7 +124,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="@id/tv_test_title"
         app:layout_constraintTop_toBottomOf="@id/iv_question2_bg"
-        android:text="Question 3"
+        android:text="@string/txt_question_3"
         android:textSize="16sp"
         android:textStyle="bold"
         android:textColor="@color/white"
@@ -177,17 +153,15 @@
         android:text="@string/lorem_placeholder"
         />
 
-    <EditText
-        android:id="@+id/et_test_3"
-        android:layout_width="0dp"
+    <Spinner
+        android:id="@+id/tv_test_spinner3"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+
         app:layout_constraintTop_toBottomOf="@id/tv_test_3"
         app:layout_constraintStart_toStartOf="@id/iv_question3_bg"
-        app:layout_constraintEnd_toEndOf="@id/iv_question3_bg"
-        android:layout_marginTop="8dp"
-        android:layout_marginHorizontal="16dp"
-        android:background="@drawable/border_text_input"
-        android:lines="5"
+        android:layout_marginStart="16dp"
+        android:layout_margin="16dp"
         />
 
     <com.google.android.material.button.MaterialButton
