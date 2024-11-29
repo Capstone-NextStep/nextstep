@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@android:id/background">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/item_bg"/> <!-- Background color -->
+        </shape>
+    </item>
+    <item android:id="@android:id/progress">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/item_bg"/> <!-- Progress color -->
+            <size android:height="2dp"/> <!-- Set the thickness here -->
+        </shape>
+    </item>
+</layer-list>

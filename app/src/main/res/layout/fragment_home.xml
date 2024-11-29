@@ -1,14 +1,182 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".presentation.home.HomeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:background="@color/color_primary">
+
+        <TextView
+            android:id="@+id/tv_greeting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="60dp"
+            android:text="@string/txt_greeting"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_career"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/career_placeholder"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@id/tv_greeting"
+            app:layout_constraintTop_toBottomOf="@id/tv_greeting" />
+
+        <ImageView
+            android:id="@+id/iv_photo_profile"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginEnd="36dp"
+            android:background="@drawable/oval_bg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_greeting" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/bg_home_item"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_career">
+
+            <TextView
+                android:id="@+id/tv_title_progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:text="@string/txt_title_progress"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ProgressBar
+                android:id="@+id/pb_progress"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:indeterminate="false"
+                android:max="100"
+                android:progress="40"
+                app:layout_constraintStart_toStartOf="@id/tv_title_progress"
+                app:layout_constraintTop_toBottomOf="@id/tv_title_progress" />
+
+            <ImageView
+                android:id="@+id/iv_menu_roadmap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:contentDescription="@string/txt_menu_roadmap"
+                android:src="@drawable/menu_roadmap"
+                app:layout_constraintStart_toStartOf="@id/tv_title_progress"
+                app:layout_constraintTop_toBottomOf="@id/pb_progress" />
+
+            <TextView
+                android:id="@+id/tv_roadmap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12sp"
+                android:text="@string/txt_my_roadmap"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@id/iv_menu_roadmap"
+                app:layout_constraintStart_toStartOf="@id/iv_menu_roadmap"
+                app:layout_constraintTop_toTopOf="@id/iv_menu_roadmap" />
+
+            <ImageView
+                android:id="@+id/iv_menu_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
+                android:contentDescription="@string/txt_menu_search"
+                android:src="@drawable/menu_search"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/pb_progress" />
+
+            <TextView
+                android:id="@+id/tv_discover"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12sp"
+                android:text="@string/txt_discover_roadmap"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@id/iv_menu_search"
+                app:layout_constraintStart_toStartOf="@id/iv_menu_search"
+                app:layout_constraintTop_toTopOf="@id/iv_menu_search" />
+
+            <ImageView
+                android:id="@+id/iv_menu_cv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:contentDescription="@string/txt_menu_cv_builder"
+                android:src="@drawable/menu_cv_builder"
+                app:layout_constraintStart_toStartOf="@id/iv_menu_roadmap"
+                app:layout_constraintTop_toBottomOf="@id/iv_menu_roadmap" />
+
+            <TextView
+                android:id="@+id/tv_cv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12sp"
+                android:drawablePadding="4dp"
+                android:text="@string/txt_cv_builder"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:drawableEndCompat="@drawable/ic_premium"
+                app:layout_constraintEnd_toEndOf="@id/iv_menu_cv"
+                app:layout_constraintStart_toStartOf="@id/iv_menu_cv"
+                app:layout_constraintTop_toTopOf="@id/iv_menu_cv" />
+
+
+            <ImageView
+                android:id="@+id/iv_menu_test"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
+                android:contentDescription="@string/txt_menu_personality_test"
+                android:src="@drawable/menu_personality_test"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_menu_search" />
+
+            <TextView
+                android:id="@+id/tv_personal_test"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12sp"
+                android:drawablePadding="4dp"
+                android:text="@string/txt_personal_test"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:drawableEndCompat="@drawable/ic_premium"
+                app:layout_constraintEnd_toEndOf="@id/iv_menu_test"
+                app:layout_constraintStart_toStartOf="@id/iv_menu_test"
+                app:layout_constraintTop_toTopOf="@id/iv_menu_test" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

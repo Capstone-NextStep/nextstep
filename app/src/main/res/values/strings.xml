@@ -38,4 +38,17 @@
     <string name="txt_question_1">Question 1</string>
     <string name="txt_question_2">Question 2</string>
     <string name="txt_question_3">Question 3</string>
+    <string name="txt_greeting">Hello, %1$s</string>
+    <string name="career_placeholder">Network Engineer</string>
+    <string name="txt_title_progress">Keep your learning progress</string>
+    <string name="txt_menu_roadmap">menu roadmap</string>
+    <string name="txt_menu_search">menu search</string>
+    <string name="txt_menu_cv_builder">menu cv builder</string>
+    <string name="txt_menu_personality_test">menu personality test</string>
+    <string name="txt_my_roadmap">My Roadmap</string>
+    <string name="txt_discover_roadmap">Discover other Roadmap</string>
+    <string name="txt_cv_builder">Try Our CV Builder</string>
+    <string name="txt_personal_test">Try Our Personal Test</string>
+    <string name="txt_mark_as_done">Mark as done</string>
+    <string name="txt_back">back</string>
 </resources>
