@@ -5,12 +5,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.nextstep.data.model.Roadmap
+import com.example.nextstep.data.model.roadmapList
 import com.example.nextstep.databinding.FragmentRoadmapBinding
+import com.example.nextstep.presentation.adapter.RoadmapAdapter
 
 
 class RoadmapFragment : Fragment() {
     private var _binding: FragmentRoadmapBinding? = null
     private val binding get() = _binding!!
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,6 +28,11 @@ class RoadmapFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val layoutManager = LinearLayoutManager(context)
+        binding.rvRoadmap.layoutManager = layoutManager
+        setData(roadmapList)
+        setProgress(roadmapList)
     }
 
     override fun onDestroy() {
@@ -30,4 +40,19 @@ class RoadmapFragment : Fragment() {
         _binding = null
     }
 
+    //Todo: Nanti sesuai di database
+    private fun setProgress(listRoadmap: List<Roadmap>) {
+        val progress = listRoadmap.filter { roadmap ->
+            roadmap.isDone
+        }
+        binding.pbRoadmap.max = listRoadmap.size
+        binding.pbRoadmap.progress = progress.size
+
+    }
+
+    private fun setData(listRoadmap: List<Roadmap>) {
+        val adapter = RoadmapAdapter()
+        adapter.submitList(listRoadmap)
+        binding.rvRoadmap.adapter = adapter
+    }
 }
