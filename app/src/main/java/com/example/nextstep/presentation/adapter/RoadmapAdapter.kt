@@ -25,11 +25,10 @@ class RoadmapAdapter : ListAdapter<Roadmap, RoadmapAdapter.ViewHolder>(DIFF_CALL
                 binding.tvRoadmapItem.setTextColor(Color.WHITE)
                 binding.tvRoadmapItem.compoundDrawablesRelative[2].setTint(Color.WHITE)
             } else {
-                binding.tvRoadmapItem.compoundDrawablesRelative[2].setTint(Color.BLACK)
+                binding.tvRoadmapItem.compoundDrawablesRelative[2].setTint(Color.GRAY)
             }
             ///Mengubah text roadmap disertai penomoran
-            binding.tvRoadmapItem.text =
-                String.format(locale = Locale.ENGLISH, "%d. %s", (roadmap.id), roadmap.title)
+            binding.tvRoadmapItem.text = roadmap.title
 
             ///Navigasi detail Activity
             binding.tvRoadmapItem.setOnClickListener {

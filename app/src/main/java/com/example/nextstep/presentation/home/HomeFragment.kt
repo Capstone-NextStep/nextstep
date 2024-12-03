@@ -10,6 +10,8 @@ import androidx.navigation.fragment.findNavController
 import com.example.nextstep.R
 import com.example.nextstep.databinding.FragmentHomeBinding
 import com.example.nextstep.utils.OnFragmentInteractionListener
+import com.example.nextstep.utils.jobTitle
+import kotlin.random.Random
 
 
 class HomeFragment : Fragment() {
@@ -17,6 +19,7 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
 
     private var listener: OnFragmentInteractionListener? = null
+
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -39,6 +42,10 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //dummy generate title
+        val jobTitles = getRandomString(jobTitle)
+        binding.tvCareer.text = jobTitles
+
         binding.ivMenuRoadmap.setOnClickListener {
             listener?.onRoadmapSelected()
             findNavController().navigate(R.id.navigation_roadmap)
@@ -59,4 +66,14 @@ class HomeFragment : Fragment() {
         super.onDetach()
         listener = null
     }
+
+    //testing dummy generate title
+    fun getRandomString(strings: List<String>): String {
+        if (strings.isEmpty()) {
+            throw IllegalArgumentException("List cannot be empty")
+        }
+        val randomIndex = Random.nextInt(strings.size)
+        return strings[randomIndex]
+    }
+
 }

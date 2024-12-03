@@ -13,6 +13,9 @@
         android:theme="@style/Theme.NextStep"
         tools:targetApi="31">
         <activity
+            android:name=".presentation.searchPath.CareerDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".presentation.roadmap.DetailRoadmapActivity"
             android:exported="false" />
         <activity

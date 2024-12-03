@@ -5,7 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.nextstep.data.model.Career
+import com.example.nextstep.data.model.careerList
 import com.example.nextstep.databinding.FragmentSearchRoadmapBinding
+import com.example.nextstep.presentation.adapter.SearchCareerAdapter
 
 
 class SearchRoadmapFragment : Fragment() {
@@ -23,6 +27,10 @@ class SearchRoadmapFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val layoutManager = LinearLayoutManager(context)
+        binding.rvSearchCareer.layoutManager = layoutManager
+        setData(careerList)
     }
 
     override fun onDestroy() {
@@ -30,4 +38,10 @@ class SearchRoadmapFragment : Fragment() {
         _binding = null
     }
 
+    private fun setData(listCareer: List<Career>){
+        val adapter = SearchCareerAdapter()
+        adapter.submitList(listCareer)
+        binding.rvSearchCareer.adapter = adapter
+
+    }
 }

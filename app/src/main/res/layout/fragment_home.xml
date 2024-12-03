@@ -34,12 +34,14 @@
             app:layout_constraintStart_toStartOf="@id/tv_greeting"
             app:layout_constraintTop_toBottomOf="@id/tv_greeting" />
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/iv_photo_profile"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginEnd="36dp"
-            android:background="@drawable/oval_bg"
+            android:padding="4dp"
+            android:src="@drawable/cat_software_engineer"
+            android:background="@drawable/avatar_bg"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/tv_greeting" />
 
@@ -142,7 +144,6 @@
                 android:textColor="@color/white"
                 android:textSize="12sp"
                 android:textStyle="bold"
-                app:drawableEndCompat="@drawable/ic_premium"
                 app:layout_constraintEnd_toEndOf="@id/iv_menu_cv"
                 app:layout_constraintStart_toStartOf="@id/iv_menu_cv"
                 app:layout_constraintTop_toTopOf="@id/iv_menu_cv" />
@@ -169,7 +170,6 @@
                 android:textColor="@color/white"
                 android:textSize="12sp"
                 android:textStyle="bold"
-                app:drawableEndCompat="@drawable/ic_premium"
                 app:layout_constraintEnd_toEndOf="@id/iv_menu_test"
                 app:layout_constraintStart_toStartOf="@id/iv_menu_test"
                 app:layout_constraintTop_toTopOf="@id/iv_menu_test" />

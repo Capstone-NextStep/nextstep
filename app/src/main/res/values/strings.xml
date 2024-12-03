@@ -53,4 +53,12 @@
     <string name="txt_back">back</string>
     <string name="txt_roadmap_title">Here is your learning path to be:</string>
     <string name="txt_progress">Keep up your learning progress!</string>
+    <string name="txt_account_setting">Account Setting</string>
+    <string name="txt_premium_plan">Premium Plan</string>
+    <string name="txt_log_out">Log out</string>
+    <string name="txt_discover_title">Discover other career paths</string>
+
+    <string name="tflite_is_not_initialized_yet">TfLite is not initialized yet</string>
+    <string name="no_tflite_interpreter_loaded">No TFLite interpreter loaded</string>
+    <string name="txt_show_learning_path">Show Learning Path</string>
 </resources>

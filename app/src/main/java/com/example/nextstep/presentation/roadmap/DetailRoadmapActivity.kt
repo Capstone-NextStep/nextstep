@@ -10,6 +10,7 @@ import com.example.nextstep.data.model.Roadmap
 import com.example.nextstep.data.model.roadmapList
 import com.example.nextstep.databinding.ActivityDetailRoadmapBinding
 
+//TODO: tidak kepakai
 class DetailRoadmapActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailRoadmapBinding
 
