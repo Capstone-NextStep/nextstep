@@ -12,6 +12,19 @@
         android:background="@color/color_primary">
 
         <TextView
+            android:id="@+id/tv_no_career_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/txt_you_have_not_chosen_any_career_yet"
+            android:textSize="18sp"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+        <TextView
             android:id="@+id/tv_roadmap_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

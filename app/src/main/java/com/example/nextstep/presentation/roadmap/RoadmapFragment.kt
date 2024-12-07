@@ -15,6 +15,7 @@ import com.example.nextstep.presentation.adapter.RoadmapAdapter
 class RoadmapFragment : Fragment() {
     private var _binding: FragmentRoadmapBinding? = null
     private val binding get() = _binding!!
+    private var user = false
 
 
     override fun onCreateView(
@@ -33,6 +34,24 @@ class RoadmapFragment : Fragment() {
         binding.rvRoadmap.layoutManager = layoutManager
         setData(roadmapList)
         setProgress(roadmapList)
+
+        //TODO: CHECK USER SUDAH PILIH CAREER JIKA BELUM
+        if(user){
+            binding.tvNoCareerInfo.visibility = View.GONE
+            binding.pbRoadmap.visibility = View.VISIBLE
+            binding.rvRoadmap.visibility = View.VISIBLE
+            binding.tvProgress.visibility = View.VISIBLE
+            binding.tvRoadmapTitle.visibility = View.VISIBLE
+            binding.tvChoosenCareer.visibility = View.VISIBLE
+        }else{
+            binding.tvNoCareerInfo.visibility = View.VISIBLE
+            binding.pbRoadmap.visibility = View.GONE
+            binding.rvRoadmap.visibility = View.GONE
+            binding.tvProgress.visibility = View.GONE
+            binding.tvRoadmapTitle.visibility = View.GONE
+            binding.tvChoosenCareer.visibility = View.GONE
+        }
+
     }
 
     override fun onDestroy() {

@@ -20,7 +20,7 @@
         android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="@color/white"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="60dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         />
@@ -58,16 +58,16 @@
         app:layout_constraintStart_toStartOf="@id/iv_question1_bg"
         app:layout_constraintEnd_toEndOf="@id/iv_question1_bg"
         android:layout_margin="16dp"
-        android:text="@string/lorem_placeholder"
+        android:text="Select most proficient skill you have or topic you interested in learning"
         />
 
     <Spinner
         android:id="@+id/tv_test_spinner1"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-
         app:layout_constraintTop_toBottomOf="@id/tv_test_1"
         app:layout_constraintStart_toStartOf="@id/iv_question1_bg"
+        app:layout_constraintEnd_toEndOf="@id/iv_question1_bg"
         android:layout_marginStart="16dp"
         android:layout_margin="16dp"
         />
@@ -104,16 +104,16 @@
         app:layout_constraintStart_toStartOf="@id/iv_question2_bg"
         app:layout_constraintEnd_toEndOf="@id/iv_question2_bg"
         android:layout_margin="16dp"
-        android:text="@string/lorem_placeholder"
+        android:text="Select additional proficient skill you have or topic you interested in learning"
         />
 
     <Spinner
         android:id="@+id/tv_test_spinner2"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-
         app:layout_constraintTop_toBottomOf="@id/tv_test_2"
         app:layout_constraintStart_toStartOf="@id/iv_question2_bg"
+        app:layout_constraintEnd_toEndOf="@id/iv_question2_bg"
         android:layout_marginStart="16dp"
         android:layout_margin="16dp"
         />
@@ -150,16 +150,16 @@
         app:layout_constraintStart_toStartOf="@id/iv_question3_bg"
         app:layout_constraintEnd_toEndOf="@id/iv_question3_bg"
         android:layout_margin="16dp"
-        android:text="@string/lorem_placeholder"
+        android:text="Select additional proficient skill you have or topic you interested in learning"
         />
 
     <Spinner
         android:id="@+id/tv_test_spinner3"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-
         app:layout_constraintTop_toBottomOf="@id/tv_test_3"
         app:layout_constraintStart_toStartOf="@id/iv_question3_bg"
+        app:layout_constraintEnd_toEndOf="@id/iv_question3_bg"
         android:layout_marginStart="16dp"
         android:layout_margin="16dp"
         />

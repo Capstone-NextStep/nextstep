@@ -67,24 +67,14 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/tv_premium_plan"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="48dp"
-                android:text="@string/txt_premium_plan"
-                android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="@id/tv_account_setting"
-                app:layout_constraintTop_toBottomOf="@id/tv_account_setting" />
-
-            <TextView
                 android:id="@+id/tv_log_out"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="48dp"
                 android:text="@string/txt_log_out"
                 android:textSize="16sp"
-                app:layout_constraintTop_toBottomOf="@id/tv_premium_plan"
-                app:layout_constraintStart_toStartOf="@id/tv_premium_plan"
+                app:layout_constraintTop_toBottomOf="@id/tv_account_setting"
+                app:layout_constraintStart_toStartOf="@id/tv_account_setting"
                 />
 
 

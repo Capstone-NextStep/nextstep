@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+    <!-- generate pdf permission -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -12,6 +15,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NextStep"
         tools:targetApi="31">
+
+        <!-- adjustPan to automatically scroll the input above keyboard -->
+        <activity
+            android:name=".presentation.CV.CvInputActivity"
+            android:exported="false"
+            android:windowSoftInputMode="stateVisible|adjustPan"
+            />
+        <activity
+            android:name=".presentation.CV.CVPageActivity"
+            android:exported="false" />
         <activity
             android:name=".presentation.searchPath.CareerDetailActivity"
             android:exported="false" />

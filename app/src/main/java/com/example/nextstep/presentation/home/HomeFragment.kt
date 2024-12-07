@@ -1,6 +1,7 @@
 package com.example.nextstep.presentation.home
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,6 +10,8 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.nextstep.R
 import com.example.nextstep.databinding.FragmentHomeBinding
+import com.example.nextstep.presentation.CV.CvInputActivity
+import com.example.nextstep.presentation.testscreen.TestActivity
 import com.example.nextstep.utils.OnFragmentInteractionListener
 import com.example.nextstep.utils.jobTitle
 import kotlin.random.Random
@@ -55,6 +58,17 @@ class HomeFragment : Fragment() {
             listener?.onSearchSelected()
             findNavController().navigate(R.id.navigation_search)
         }
+
+        binding.ivMenuCv.setOnClickListener {
+            val intent = Intent(requireContext(), CvInputActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.ivMenuTest.setOnClickListener {
+            val intent = Intent(requireContext(), TestActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 
     override fun onDestroy() {
@@ -68,7 +82,7 @@ class HomeFragment : Fragment() {
     }
 
     //testing dummy generate title
-    fun getRandomString(strings: List<String>): String {
+    private fun getRandomString(strings: List<String>): String {
         if (strings.isEmpty()) {
             throw IllegalArgumentException("List cannot be empty")
         }

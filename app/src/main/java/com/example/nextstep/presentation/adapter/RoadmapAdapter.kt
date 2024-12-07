@@ -12,7 +12,7 @@ import com.example.nextstep.R
 import com.example.nextstep.data.model.Roadmap
 import com.example.nextstep.databinding.RoadmapItemBinding
 import com.example.nextstep.presentation.roadmap.DetailRoadmapActivity
-import java.util.Locale
+
 
 class RoadmapAdapter : ListAdapter<Roadmap, RoadmapAdapter.ViewHolder>(DIFF_CALLBACK) {
     class ViewHolder(private val binding: RoadmapItemBinding) :

@@ -1,0 +1,674 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="16dp"
+    android:background="@color/color_primary"
+    tools:context=".presentation.CV.CvInputActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_inputCV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="60dp"
+            android:contentDescription="@string/txt_back"
+            android:src="@drawable/baseline_arrow_back_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_title_input"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/txt_create_cv"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:layout_marginTop="108dp"
+            />
+
+        <!-- personal info -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_personal_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/tv_title_input"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="24dp"
+            android:layout_marginHorizontal="16dp"
+            app:contentPadding="16dp"
+            app:cardCornerRadius="16dp"
+            >
+
+            <LinearLayout
+                android:id="@+id/ll_personal_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:animateLayoutChanges="true"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/txt_personal_information"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="8dp"
+                    app:drawableEndCompat="@drawable/baseline_keyboard_arrow_down_24" />
+
+                <LinearLayout
+                    android:id="@+id/ll_personal_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="visible"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/et_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_item"
+                        android:padding="12dp"
+                        android:textSize="14sp"
+                        android:hint="@string/prompt_name"
+                        android:inputType="text"
+                        />
+
+                    <EditText
+                        android:id="@+id/et_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_item"
+                        android:layout_marginTop="8dp"
+                        android:padding="12dp"
+                        android:textSize="14sp"
+                        android:hint="@string/email"
+                        android:inputType="textEmailAddress"
+                        />
+
+                    <EditText
+                        android:id="@+id/et_phone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_item"
+                        android:layout_marginTop="8dp"
+                        android:padding="12dp"
+                        android:textSize="14sp"
+                        android:hint="phone"
+                        android:inputType="phone"
+                        />
+
+                    <EditText
+                        android:id="@+id/et_linkedin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_item"
+                        android:layout_marginTop="8dp"
+                        android:padding="12dp"
+                        android:textSize="14sp"
+                        android:hint="LinkedIn"
+                        android:inputType="text"
+                        />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <!-- education -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_education"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/card_personal_info"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="16dp"
+            android:layout_marginHorizontal="16dp"
+            app:contentPadding="16dp"
+            app:cardCornerRadius="16dp"
+            >
+
+            <LinearLayout
+                android:id="@+id/ll_education"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:animateLayoutChanges="true"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/txt_education"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="8dp"
+                    app:drawableEndCompat="@drawable/baseline_keyboard_arrow_down_24" />
+
+                <LinearLayout
+                    android:id="@+id/ll_education_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/et_school_one"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_item"
+                        android:padding="12dp"
+                        android:textSize="14sp"
+                        android:hint="@string/prompt_institution"
+                        android:inputType="text"
+                        />
+
+                    <EditText
+                        android:id="@+id/et_degree_one"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_item"
+                        android:layout_marginTop="8dp"
+                        android:padding="12dp"
+                        android:textSize="14sp"
+                        android:hint="@string/degree_major_prompt"
+                        android:inputType="text"
+                        />
+
+                    <EditText
+                        android:id="@+id/et_year_one"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_item"
+                        android:layout_marginTop="8dp"
+                        android:padding="12dp"
+                        android:textSize="14sp"
+                        android:hint="@string/txt_year"
+                        android:inputType="number"
+                        />
+
+                    <com.google.android.material.divider.MaterialDivider
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="8dp"
+                        app:dividerColor="@android:color/black"
+                        app:dividerThickness="1dp"/>
+
+                    <EditText
+                        android:id="@+id/et_school_two"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_item"
+                        android:padding="12dp"
+                        android:layout_marginTop="8dp"
+                        android:textSize="14sp"
+                        android:hint="@string/prompt_institution"
+                        android:inputType="text"
+                        />
+
+                    <EditText
+                        android:id="@+id/et_degree_two"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_item"
+                        android:layout_marginTop="8dp"
+                        android:padding="12dp"
+                        android:textSize="14sp"
+                        android:hint="@string/degree_major_prompt"
+                        android:inputType="text"
+                        />
+
+                    <EditText
+                        android:id="@+id/et_year_two"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_item"
+                        android:layout_marginTop="8dp"
+                        android:padding="12dp"
+                        android:textSize="14sp"
+                        android:hint="@string/txt_year"
+                        android:inputType="number"
+                        />
+
+                    <com.google.android.material.divider.MaterialDivider
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="8dp"
+                        app:dividerColor="@android:color/black"
+                        app:dividerThickness="1dp"/>
+
+                    <EditText
+                        android:id="@+id/et_school_three"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_item"
+                        android:padding="12dp"
+                        android:layout_marginTop="8dp"
+                        android:textSize="14sp"
+                        android:hint="@string/prompt_institution"
+                        android:inputType="text"
+                        />
+
+                    <EditText
+                        android:id="@+id/et_degree_three"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_item"
+                        android:layout_marginTop="8dp"
+                        android:padding="12dp"
+                        android:textSize="14sp"
+                        android:hint="@string/degree_major_prompt"
+                        android:inputType="text"
+                        />
+
+                    <EditText
+                        android:id="@+id/et_year_three"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_item"
+                        android:layout_marginTop="8dp"
+                        android:padding="12dp"
+                        android:textSize="14sp"
+                        android:hint="@string/txt_year"
+                        android:inputType="number"
+                        />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <!-- skills -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_skill_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/card_education"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="16dp"
+            android:layout_marginHorizontal="16dp"
+            app:contentPadding="16dp"
+            app:cardCornerRadius="16dp"
+            >
+
+            <LinearLayout
+                android:id="@+id/ll_skill"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:animateLayoutChanges="true"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/txt_technical"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="8dp"
+                    app:drawableEndCompat="@drawable/baseline_keyboard_arrow_down_24" />
+
+                <LinearLayout
+                    android:id="@+id/ll_skill_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/et_skill_one"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_item"
+                        android:padding="12dp"
+                        android:textSize="14sp"
+                        android:hint="@string/input_your_skill_prompt"
+                        android:inputType="text"
+                        />
+
+                    <EditText
+                        android:id="@+id/et_skill_two"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_item"
+                        android:layout_marginTop="8dp"
+                        android:padding="12dp"
+                        android:textSize="14sp"
+                        android:hint="@string/input_your_skill_prompt"
+                        android:inputType="text"
+                        />
+
+                    <EditText
+                        android:id="@+id/et_skill_three"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_item"
+                        android:layout_marginTop="8dp"
+                        android:padding="12dp"
+                        android:textSize="14sp"
+                        android:hint="@string/input_your_skill_prompt"
+                        android:inputType="text"
+                        />
+
+                    <EditText
+                        android:id="@+id/et_skill_four"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_item"
+                        android:layout_marginTop="8dp"
+                        android:padding="12dp"
+                        android:textSize="14sp"
+                        android:hint="@string/input_your_skill_prompt"
+                        android:inputType="text"
+                        />
+
+                    <EditText
+                        android:id="@+id/et_skill_five"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_item"
+                        android:layout_marginTop="8dp"
+                        android:padding="12dp"
+                        android:textSize="14sp"
+                        android:hint="@string/input_your_skill_prompt"
+                        android:inputType="text"
+                        />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <!-- experience -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_experience_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/card_skill_info"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="16dp"
+            android:layout_marginHorizontal="16dp"
+            app:contentPadding="16dp"
+            app:cardCornerRadius="16dp"
+            >
+
+            <LinearLayout
+                android:id="@+id/ll_experience"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:animateLayoutChanges="true"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/txt_experience"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="8dp"
+                    app:drawableEndCompat="@drawable/baseline_keyboard_arrow_down_24" />
+
+                <LinearLayout
+                    android:id="@+id/ll_experience_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/et_experience_one"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_item"
+                        android:padding="12dp"
+                        android:textSize="14sp"
+                        android:hint="@string/latest_job_prompt"
+                        android:inputType="text"
+                        />
+
+                    <EditText
+                        android:id="@+id/et_experience_one_detail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_item"
+                        android:layout_marginTop="8dp"
+                        android:padding="12dp"
+                        android:textSize="14sp"
+                        android:lines="5"
+                        android:hint="@string/describe_the_responsibility_prompt"
+                        android:inputType="textMultiLine"
+                        android:gravity="top|start"
+                        />
+
+                    <EditText
+                        android:id="@+id/et_experience_two"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_item"
+                        android:layout_marginTop="8dp"
+                        android:padding="12dp"
+                        android:textSize="14sp"
+                        android:hint="@string/previous_job_prompt"
+                        android:inputType="text"
+                        />
+
+                    <EditText
+                        android:id="@+id/et_experience_two_detail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_item"
+                        android:layout_marginTop="8dp"
+                        android:padding="12dp"
+                        android:textSize="14sp"
+                        android:lines="5"
+                        android:hint="@string/describe_the_responsibility_prompt"
+                        android:inputType="textMultiLine"
+                        android:gravity="top|start"
+                        />
+
+                    <EditText
+                        android:id="@+id/et_experience_three"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_item"
+                        android:layout_marginTop="8dp"
+                        android:padding="12dp"
+                        android:textSize="14sp"
+                        android:hint="@string/previous_job_prompt"
+                        android:inputType="text"
+                        />
+
+                    <EditText
+                        android:id="@+id/et_experience_three_detail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_item"
+                        android:layout_marginTop="8dp"
+                        android:padding="12dp"
+                        android:textSize="14sp"
+                        android:lines="5"
+                        android:hint="@string/describe_the_responsibility_prompt"
+                        android:inputType="textMultiLine"
+                        android:gravity="top|start"
+                        />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <!-- project -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_project_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/card_experience_info"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="16dp"
+            android:layout_marginHorizontal="16dp"
+            app:contentPadding="16dp"
+            app:cardCornerRadius="16dp"
+            >
+
+            <LinearLayout
+                android:id="@+id/ll_project"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:animateLayoutChanges="true"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/txt_project"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="8dp"
+                    app:drawableEndCompat="@drawable/baseline_keyboard_arrow_down_24" />
+
+                <LinearLayout
+                    android:id="@+id/ll_project_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/et_project_one"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_item"
+                        android:padding="12dp"
+                        android:textSize="14sp"
+                        android:hint="@string/project_prompt"
+                        android:inputType="text"
+                        />
+
+                    <EditText
+                        android:id="@+id/et_project_one_detail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_item"
+                        android:layout_marginTop="8dp"
+                        android:padding="12dp"
+                        android:textSize="14sp"
+                        android:lines="5"
+                        android:hint="@string/project_details_prompt"
+                        android:inputType="textMultiLine"
+                        android:gravity="top|start"
+                        />
+
+                    <EditText
+                        android:id="@+id/et_project_two"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_item"
+                        android:layout_marginTop="8dp"
+                        android:padding="12dp"
+                        android:textSize="14sp"
+                        android:hint="@string/project_prompt"
+                        android:inputType="text"
+                        />
+
+                    <EditText
+                        android:id="@+id/et_project_two_detail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_item"
+                        android:layout_marginTop="8dp"
+                        android:padding="12dp"
+                        android:textSize="14sp"
+                        android:lines="5"
+                        android:hint="@string/project_details_prompt"
+                        android:inputType="textMultiLine"
+                        android:gravity="top|start"
+                        />
+
+                    <EditText
+                        android:id="@+id/et_project_three"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_item"
+                        android:layout_marginTop="8dp"
+                        android:padding="12dp"
+                        android:textSize="14sp"
+                        android:hint="@string/project_prompt"
+                        android:inputType="text"
+                        />
+
+                    <EditText
+                        android:id="@+id/et_project_three_detail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_item"
+                        android:layout_marginTop="8dp"
+                        android:padding="12dp"
+                        android:textSize="14sp"
+                        android:lines="5"
+                        android:hint="@string/project_details_prompt"
+                        android:inputType="textMultiLine"
+                        android:gravity="top|start"
+                        />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_preview"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/card_project_info"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_create"
+            android:text="@string/txt_preview"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="4dp"
+            android:backgroundTint="@color/button_enabled"
+            android:textColor="@color/white"
+            app:cornerRadius="16dp"
+            android:textSize="16sp"
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_create"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/card_project_info"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btn_preview"
+            android:text="@string/txt_create"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginStart="4dp"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/color_primary"
+            app:cornerRadius="16dp"
+            android:textSize="16sp"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
