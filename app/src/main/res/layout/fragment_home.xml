@@ -24,11 +24,22 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_marginTop="60dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="48dp"
+            />
+
         <TextView
             android:id="@+id/tv_career"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/career_placeholder"
+            tools:text="@string/career_placeholder"
             android:textColor="@color/white"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="@id/tv_greeting"
@@ -81,7 +92,7 @@
                 android:id="@+id/iv_menu_roadmap"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="8dp"
                 android:contentDescription="@string/txt_menu_roadmap"
                 android:src="@drawable/menu_roadmap"
                 app:layout_constraintStart_toStartOf="@id/tv_title_progress"
@@ -94,7 +105,7 @@
                 android:layout_marginTop="12sp"
                 android:text="@string/txt_my_roadmap"
                 android:textColor="@color/white"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="@id/iv_menu_roadmap"
                 app:layout_constraintStart_toStartOf="@id/iv_menu_roadmap"
@@ -104,7 +115,7 @@
                 android:id="@+id/iv_menu_search"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="24dp"
                 android:contentDescription="@string/txt_menu_search"
                 android:src="@drawable/menu_search"
@@ -118,7 +129,7 @@
                 android:layout_marginTop="12sp"
                 android:text="@string/txt_discover_roadmap"
                 android:textColor="@color/white"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="@id/iv_menu_search"
                 app:layout_constraintStart_toStartOf="@id/iv_menu_search"
@@ -128,7 +139,7 @@
                 android:id="@+id/iv_menu_cv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="12dp"
                 android:contentDescription="@string/txt_menu_cv_builder"
                 android:src="@drawable/menu_cv_builder"
                 app:layout_constraintStart_toStartOf="@id/iv_menu_roadmap"
@@ -142,7 +153,7 @@
                 android:drawablePadding="4dp"
                 android:text="@string/txt_cv_builder"
                 android:textColor="@color/white"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="@id/iv_menu_cv"
                 app:layout_constraintStart_toStartOf="@id/iv_menu_cv"
@@ -153,7 +164,7 @@
                 android:id="@+id/iv_menu_test"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="24dp"
                 android:contentDescription="@string/txt_menu_personality_test"
                 android:src="@drawable/menu_personality_test"
@@ -162,17 +173,47 @@
 
             <TextView
                 android:id="@+id/tv_personal_test"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12sp"
                 android:drawablePadding="4dp"
                 android:text="@string/txt_personal_test"
                 android:textColor="@color/white"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 android:textStyle="bold"
+                android:textAlignment="center"
+                android:layout_marginHorizontal="8dp"
                 app:layout_constraintEnd_toEndOf="@id/iv_menu_test"
                 app:layout_constraintStart_toStartOf="@id/iv_menu_test"
                 app:layout_constraintTop_toTopOf="@id/iv_menu_test" />
+
+            <TextView
+                android:id="@+id/tv_ask_gemini"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@color/color_primary"
+                android:text="@string/txt_ask_gemini"
+                app:layout_constraintBottom_toBottomOf="@id/iv_gemini"
+                app:layout_constraintEnd_toStartOf="@id/iv_gemini"
+                />
+
+            <ImageView
+                android:id="@+id/iv_gemini"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginBottom="96dp"
+                android:layout_marginEnd="16dp"
+                android:contentDescription="@string/txt_ask_gemini"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_menu_test"
+                android:layout_marginTop="4dp"
+                android:background="@color/white"
+                android:src="@drawable/google_gemini_icon"
+                />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

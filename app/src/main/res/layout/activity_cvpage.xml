@@ -57,6 +57,20 @@
         app:layout_constraintTop_toBottomOf="@id/tv_name"
         tools:text="linkedin/dummy" />
 
+    <TextView
+        android:id="@+id/tv_about"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_linkedin"
+        tools:text="@string/txt_dummy_experience_detail"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="8dp"
+        android:textSize="12sp"
+        android:textAlignment="center"
+        />
+
     <!--<TextView
         android:id="@+id/tv_github"
         android:layout_width="wrap_content"
@@ -82,7 +96,7 @@
         android:text="@string/txt_education"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_phone_number"
+        app:layout_constraintTop_toBottomOf="@id/tv_about"
         tools:text="Education" />
 
     <com.google.android.material.divider.MaterialDivider

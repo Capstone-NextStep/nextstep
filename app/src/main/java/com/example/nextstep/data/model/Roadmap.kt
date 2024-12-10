@@ -1,5 +1,6 @@
 package com.example.nextstep.data.model
 
+//tidak dipake
 data class Roadmap(
     val id: Int, //id tidak dipakai
     val title: String,

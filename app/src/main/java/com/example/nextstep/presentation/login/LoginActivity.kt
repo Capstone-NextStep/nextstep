@@ -1,23 +1,64 @@
 package com.example.nextstep.presentation.login
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.example.nextstep.R
+import androidx.lifecycle.ViewModelProvider
+import com.example.nextstep.data.AuthResult
+import com.example.nextstep.databinding.ActivityLoginBinding
+import com.example.nextstep.presentation.MainActivity
+import com.example.nextstep.presentation.ViewModel.AuthViewModel
+import com.example.nextstep.presentation.ViewModel.AuthViewModelFactory
+import com.google.android.material.snackbar.Snackbar
+
 
 class LoginActivity : AppCompatActivity() {
-
+    private lateinit var binding: ActivityLoginBinding
+    private lateinit var authViewModel: AuthViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_login)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+        binding = ActivityLoginBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        val factory: AuthViewModelFactory = AuthViewModelFactory.getInstance(this)
+        authViewModel = ViewModelProvider(this, factory)[AuthViewModel::class.java]
+
+        binding.btnLogin.setOnClickListener {
+            val email = binding.etEmail.text.toString()
+            val password = binding.etPassword.text.toString()
+
+            if (email.isNotEmpty() && password.isNotEmpty()) {
+                authViewModel.login(email, password)
+            } else {
+                showSnackBar("Please enter email and password")
+            }
+        }
+
+        authViewModel.loginResult.observe(this){result ->
+            when(result){
+                is AuthResult.Loading ->{
+                    binding.progressBar.visibility = View.VISIBLE
+                }
+                is AuthResult.Success -> {
+                    binding.progressBar.visibility = View.GONE
+                    showSnackBar("Login successful! Welcome ${result.user.displayName}")
+                    startActivity(Intent(this, MainActivity::class.java))
+                    finish()
+                }
+                is AuthResult.Error -> {
+                    binding.progressBar.visibility = View.GONE
+                    showSnackBar(result.message)
+                }
+            }
         }
     }
+
+    private fun showSnackBar(message: String) {
+        Snackbar.make(binding.root, message, Snackbar.LENGTH_SHORT).show()
+    }
+
 }

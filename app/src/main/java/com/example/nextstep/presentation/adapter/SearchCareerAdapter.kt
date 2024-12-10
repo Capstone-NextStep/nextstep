@@ -6,20 +6,20 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.nextstep.data.model.Career
+import com.example.nextstep.data.model.RoadmapsItem
 import com.example.nextstep.databinding.SearchItemBinding
 import com.example.nextstep.presentation.searchPath.CareerDetailActivity
 
 
-class SearchCareerAdapter : ListAdapter<Career, SearchCareerAdapter.ViewHolder>(DIFF_CALLBACK) {
+class SearchCareerAdapter : ListAdapter<RoadmapsItem, SearchCareerAdapter.ViewHolder>(DIFF_CALLBACK) {
     class ViewHolder(private val binding: SearchItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(career: Career) {
-            binding.tvSearchItem.text = career.title
+        fun bind(roadmap: RoadmapsItem) {
+            binding.tvSearchItem.text = roadmap.career
 
             binding.tvSearchItem.setOnClickListener {
                 val intent = Intent(itemView.context, CareerDetailActivity::class.java)
-                intent.putExtra(CareerDetailActivity.EXTRA_ID, career.id)
+                intent.putExtra(CareerDetailActivity.EXTRA_ID, roadmap.id)
                 itemView.context.startActivity(intent)
             }
         }
@@ -34,22 +34,22 @@ class SearchCareerAdapter : ListAdapter<Career, SearchCareerAdapter.ViewHolder>(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val career = getItem(position)
-        holder.bind(career)
+        val roadmap = getItem(position)
+        holder.bind(roadmap)
     }
 
     companion object {
-        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Career>() {
+        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<RoadmapsItem>() {
             override fun areItemsTheSame(
-                oldItem: Career,
-                newItem: Career
+                oldItem: RoadmapsItem,
+                newItem: RoadmapsItem
             ): Boolean {
                 return oldItem == newItem
             }
 
             override fun areContentsTheSame(
-                oldItem: Career,
-                newItem: Career
+                oldItem: RoadmapsItem,
+                newItem: RoadmapsItem
             ): Boolean {
                 return oldItem == newItem
             }

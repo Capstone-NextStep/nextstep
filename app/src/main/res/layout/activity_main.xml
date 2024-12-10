@@ -20,6 +20,7 @@
         app:navGraph="@navigation/navigation"
         />
 
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav"
         android:layout_width="match_parent"
@@ -31,5 +32,7 @@
         app:menu="@menu/bottom_menu"
         android:background="@color/color_primary"
         />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

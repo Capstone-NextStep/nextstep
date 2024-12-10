@@ -33,6 +33,15 @@ class CvInputActivity : AppCompatActivity() {
             }
         }
 
+        //about
+        binding.cardAboutInfo.setOnClickListener{
+            if (binding.llAboutInput.visibility == View.GONE) {
+                binding.llAboutInput.visibility = View.VISIBLE
+            } else {
+                binding.llAboutInput.visibility = View.GONE
+            }
+        }
+
         //education
         binding.cardEducation.setOnClickListener{
             if (binding.llEducationInput.visibility == View.GONE) {
@@ -102,6 +111,7 @@ class CvInputActivity : AppCompatActivity() {
         cvPreview.tvPhoneNumber.text = binding.etPhone.text
         cvPreview.tvEmail.text = binding.etEmail.text
         cvPreview.tvLinkedin.text = binding.etLinkedin.text
+        cvPreview.tvAbout.text = binding.etAbout.text
 
         cvPreview.tvInstituteOne.text = binding.etSchoolOne.text
         cvPreview.tvGraduatedOne.text = binding.etYearOne.text
@@ -146,6 +156,7 @@ class CvInputActivity : AppCompatActivity() {
             phoneNumber = binding.etPhone.text.toString(),
             email = binding.etEmail.text.toString(),
             linkedin = binding.etLinkedin.text.toString(),
+            about = binding.etAbout.text.toString(),
             schoolOne = binding.etSchoolOne.text.toString(),
             graduatedOne = binding.etYearOne.text.toString(),
             degreeOne = binding.etDegreeOne.text.toString(),

@@ -37,6 +37,7 @@ class CVPageActivity : AppCompatActivity() {
             binding.tvPhoneNumber.text = cvData.phoneNumber
             binding.tvEmail.text = cvData.email
             binding.tvLinkedin.text = cvData.linkedin
+            binding.tvAbout.text = cvData.about
             binding.tvInstituteOne.text = cvData.schoolOne
             binding.tvGraduatedOne.text = cvData.graduatedOne
             binding.tvMajorOne.text = cvData.degreeOne

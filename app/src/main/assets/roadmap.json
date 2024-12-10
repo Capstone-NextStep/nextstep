@@ -1,0 +1,68 @@
+{
+  "roadmaps": [
+    {
+      "id": "DA-78901",
+      "career": "Data Analyst",
+      "steps": [
+        "Learn fundamental statistical concepts and data analysis techniques",
+        "Master data cleaning and preparation techniques",
+        "Gain proficiency in data visualization tools (e.g., Tableau, Power BI)",
+        "Learn a programming language for data analysis (e.g., Python, R)",
+        "Understand SQL for data querying and manipulation",
+        "Gain experience with data mining and machine learning algorithms",
+        "Build a strong foundation in data warehousing and data modeling",
+        "Work on data analysis projects to build a portfolio",
+        "Obtain relevant certifications (e.g., Data Analyst Associate, Data Scientist Associate)",
+        "Secure an entry-level data analyst position",
+        "Specialize in a specific domain (e.g., healthcare, finance, marketing)",
+        "Continue learning and stay updated with industry trends"
+      ],
+      "createdAt": {
+        "_seconds": 1733334751,
+        "_nanoseconds": 647000000
+      }
+    },
+    {
+      "id": "R-6354",
+      "career": "Data Scientist",
+      "steps": [
+        "Introduction to Data Science",
+        "Mathematics for Data Science",
+        "Python for Data Science",
+        "R Programming for Data Science",
+        "Data Collection",
+        "Data Preprocessing",
+        "Data Visualization",
+        "Statistical Analysis",
+        "Machine Learning",
+        "Deep Learning",
+        "Natural Language Processing",
+        "Big Data",
+        "Databases",
+        "DevOps for Data Science",
+        "Ethical considerations in Data Science"
+      ]
+    },
+    {
+      "id": "NA-12345",
+      "career": "Network Administrator Trainee",
+      "steps": [
+        "Learn fundamental networking concepts (OSI model, TCP/IP)",
+        "Gain hands-on experience with network devices (routers, switches)",
+        "Obtain certifications like CompTIA Network+ or CCNA",
+        "Understand network security principles and practices",
+        "Learn about network monitoring and troubleshooting tools",
+        "Develop scripting skills (e.g., Python, Bash) for automation",
+        "Gain experience with network virtualization and cloud technologies",
+        "Seek internships or volunteer opportunities in network administration",
+        "Secure an entry-level network administrator position",
+        "Specialize in a specific area like network security, wireless networks, or data center networking",
+        "Continue professional development through certifications and advanced training"
+      ],
+      "createdAt": {
+        "_seconds": 1733330701,
+        "_nanoseconds": 815000000
+      }
+    }
+  ]
+}

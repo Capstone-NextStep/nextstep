@@ -10,6 +10,7 @@ data class CVData(
     val email: String,
     val linkedin: String,
     val schoolOne: String,
+    val about: String,
     val graduatedOne: String,
     val degreeOne: String,
     val schoolTwo: String,

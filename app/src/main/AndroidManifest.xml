@@ -4,6 +4,7 @@
     <!-- generate pdf permission -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -14,22 +15,32 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.NextStep"
+        android:usesCleartextTraffic="true"
+        android:networkSecurityConfig="@xml/network_security_config"
         tools:targetApi="31">
-
-        <!-- adjustPan to automatically scroll the input above keyboard -->
         <activity
-            android:name=".presentation.CV.CvInputActivity"
+            android:name=".presentation.gemini.GeminiActivity"
             android:exported="false"
             android:windowSoftInputMode="stateVisible|adjustPan"
             />
+        <activity
+            android:name=".presentation.searchPath.ListRoadmapActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.user.UpdateDataActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.user.AccountSettingActivity"
+            android:exported="false" /> <!-- adjustPan to automatically scroll the input above keyboard -->
+        <activity
+            android:name=".presentation.CV.CvInputActivity"
+            android:exported="false"
+            android:windowSoftInputMode="stateVisible|adjustPan" />
         <activity
             android:name=".presentation.CV.CVPageActivity"
             android:exported="false" />
         <activity
             android:name=".presentation.searchPath.CareerDetailActivity"
-            android:exported="false" />
-        <activity
-            android:name=".presentation.roadmap.DetailRoadmapActivity"
             android:exported="false" />
         <activity
             android:name=".presentation.recommend.RecommendPathActivity"

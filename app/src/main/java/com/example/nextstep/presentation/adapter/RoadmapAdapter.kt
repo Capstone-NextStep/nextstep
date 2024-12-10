@@ -1,6 +1,5 @@
 package com.example.nextstep.presentation.adapter
 
-import android.content.Intent
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,15 +8,14 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.nextstep.R
-import com.example.nextstep.data.model.Roadmap
+import com.example.nextstep.data.model.RoadmapProgressItem
 import com.example.nextstep.databinding.RoadmapItemBinding
-import com.example.nextstep.presentation.roadmap.DetailRoadmapActivity
 
 
-class RoadmapAdapter : ListAdapter<Roadmap, RoadmapAdapter.ViewHolder>(DIFF_CALLBACK) {
+class RoadmapAdapter : ListAdapter<RoadmapProgressItem, RoadmapAdapter.ViewHolder>(DIFF_CALLBACK) {
     class ViewHolder(private val binding: RoadmapItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(roadmap: Roadmap) {
+        fun bind(roadmap: RoadmapProgressItem) {
             ///Mengubah warna text & background sesuai isDone
             if (roadmap.isDone) {
                 binding.tvRoadmapItem.background =
@@ -28,14 +26,7 @@ class RoadmapAdapter : ListAdapter<Roadmap, RoadmapAdapter.ViewHolder>(DIFF_CALL
                 binding.tvRoadmapItem.compoundDrawablesRelative[2].setTint(Color.GRAY)
             }
             ///Mengubah text roadmap disertai penomoran
-            binding.tvRoadmapItem.text = roadmap.title
-
-            ///Navigasi detail Activity
-            binding.tvRoadmapItem.setOnClickListener {
-                val intent = Intent(itemView.context, DetailRoadmapActivity::class.java)
-                intent.putExtra(DetailRoadmapActivity.EXTRA_ID, roadmap.id)
-                itemView.context.startActivity(intent)
-            }
+            binding.tvRoadmapItem.text = roadmap.step
 
         }
     }
@@ -51,17 +42,17 @@ class RoadmapAdapter : ListAdapter<Roadmap, RoadmapAdapter.ViewHolder>(DIFF_CALL
     }
 
     companion object {
-        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Roadmap>() {
+        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<RoadmapProgressItem>() {
             override fun areItemsTheSame(
-                oldItem: Roadmap,
-                newItem: Roadmap
+                oldItem: RoadmapProgressItem,
+                newItem: RoadmapProgressItem
             ): Boolean {
                 return oldItem == newItem
             }
 
             override fun areContentsTheSame(
-                oldItem: Roadmap,
-                newItem: Roadmap
+                oldItem: RoadmapProgressItem,
+                newItem: RoadmapProgressItem
             ): Boolean {
                 return oldItem == newItem
             }

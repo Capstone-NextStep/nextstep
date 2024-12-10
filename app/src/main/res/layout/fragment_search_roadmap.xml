@@ -12,6 +12,7 @@
         android:background="@color/color_primary"
         >
 
+
         <TextView
             android:id="@+id/tv_discover_title"
             android:layout_width="wrap_content"
@@ -64,6 +65,17 @@
                 android:layout_marginTop="24dp"
                 tools:listitem="@layout/search_item"
                 android:paddingVertical="8dp"
+                />
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
                 />
 
 

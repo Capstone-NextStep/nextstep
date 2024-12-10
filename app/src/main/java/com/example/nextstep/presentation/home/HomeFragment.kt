@@ -7,14 +7,22 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.nextstep.R
+import com.example.nextstep.data.Result
+import com.example.nextstep.data.model.RoadmapProgressItem
 import com.example.nextstep.databinding.FragmentHomeBinding
 import com.example.nextstep.presentation.CV.CvInputActivity
+import com.example.nextstep.presentation.ViewModel.RoadmapViewModel
+import com.example.nextstep.presentation.ViewModel.RoadmapViewModelFactory
+import com.example.nextstep.presentation.ViewModel.SharedViewModel
+import com.example.nextstep.presentation.gemini.GeminiActivity
 import com.example.nextstep.presentation.testscreen.TestActivity
 import com.example.nextstep.utils.OnFragmentInteractionListener
-import com.example.nextstep.utils.jobTitle
-import kotlin.random.Random
+import com.google.android.material.snackbar.Snackbar
+
 
 
 class HomeFragment : Fragment() {
@@ -44,10 +52,36 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val factory: RoadmapViewModelFactory = RoadmapViewModelFactory.getInstance(requireContext())
+        val viewModel by viewModels<RoadmapViewModel> {
+            factory
+        }
+        val sharedViewModel = ViewModelProvider(requireActivity())[SharedViewModel::class.java]
 
-        //dummy generate title
-        val jobTitles = getRandomString(jobTitle)
-        binding.tvCareer.text = jobTitles
+        sharedViewModel.userId.observe(viewLifecycleOwner) { id ->
+            viewModel.getUserRoadmapById(id).observe(viewLifecycleOwner) { result ->
+                when (result) {
+                    is Result.Loading -> {
+                        binding.progressBar.visibility = View.VISIBLE
+                    }
+
+                    is Result.Success -> {
+                        binding.progressBar.visibility = View.GONE
+                        if (result.data.career.isNotEmpty()) {
+                            binding.tvGreeting.text =
+                                getString(R.string.txt_greeting, result.data.name)
+                            binding.tvCareer.text = result.data.career
+                            setProgress(result.data.roadmapProgress)
+                        }
+                    }
+
+                    is Result.Error -> {
+                        binding.progressBar.visibility = View.GONE
+                        showSnackBar(result.error)
+                    }
+                }
+            }
+        }
 
         binding.ivMenuRoadmap.setOnClickListener {
             listener?.onRoadmapSelected()
@@ -69,6 +103,11 @@ class HomeFragment : Fragment() {
             startActivity(intent)
         }
 
+        binding.ivGemini.setOnClickListener {
+            val intent = Intent(requireContext(), GeminiActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 
     override fun onDestroy() {
@@ -81,13 +120,15 @@ class HomeFragment : Fragment() {
         listener = null
     }
 
-    //testing dummy generate title
-    private fun getRandomString(strings: List<String>): String {
-        if (strings.isEmpty()) {
-            throw IllegalArgumentException("List cannot be empty")
-        }
-        val randomIndex = Random.nextInt(strings.size)
-        return strings[randomIndex]
+    private fun setProgress(roadmapProgress: List<RoadmapProgressItem>) {
+        val progress = roadmapProgress.filter { it.isDone }
+        binding.pbProgress.max = roadmapProgress.size
+        binding.pbProgress.progress = progress.size
+
+    }
+
+    private fun showSnackBar(message: String) {
+        Snackbar.make(binding.root, message, Snackbar.LENGTH_SHORT).show()
     }
 
 }
