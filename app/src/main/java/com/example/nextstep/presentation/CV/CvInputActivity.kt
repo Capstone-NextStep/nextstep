@@ -14,6 +14,7 @@ import com.example.nextstep.data.Result
 import com.example.nextstep.data.model.CVData
 import com.example.nextstep.databinding.ActivityCvInputBinding
 import com.example.nextstep.databinding.CvPreviewItemBinding
+import com.example.nextstep.preference.TokenPreference
 import com.example.nextstep.presentation.ViewModel.CvViewModel
 import com.example.nextstep.presentation.ViewModel.CvViewModelFactory
 import com.example.nextstep.presentation.ViewModel.SharedViewModel
@@ -23,6 +24,7 @@ class CvInputActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCvInputBinding
     private lateinit var viewModel: CvViewModel
     private lateinit var sharedViewModel: SharedViewModel
+    private lateinit var tokenPreference: TokenPreference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,10 +35,12 @@ class CvInputActivity : AppCompatActivity() {
         val factory: CvViewModelFactory = CvViewModelFactory.getInstance(this)
         viewModel = ViewModelProvider(this, factory)[CvViewModel::class.java]
         sharedViewModel = ViewModelProvider(this)[SharedViewModel::class.java]
+        tokenPreference = TokenPreference(this)
 
+        val token = tokenPreference.getToken()
         val idUser = intent.getStringExtra(EXTRA_ID)
         if(idUser!=null){
-            viewModel.generateTemplate(idUser).observe(this) { result ->
+            viewModel.generateTemplate(idUser, token!!).observe(this) { result ->
                 when(result){
                     is Result.Loading ->{
                         //show loading

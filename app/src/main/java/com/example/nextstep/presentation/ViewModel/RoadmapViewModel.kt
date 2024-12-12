@@ -7,7 +7,7 @@ import com.example.nextstep.data.repository.AppRepository
 import com.example.nextstep.di.Injection
 
 class RoadmapViewModel(private val appRepository: AppRepository): ViewModel() {
-    fun getUserRoadmapById(userId: String) = appRepository.getUserRoadmapById(userId)
+    fun getUserRoadmapById(userId: String, token: String) = appRepository.getUserRoadmapById(userId, token)
 
     fun getSession() = appRepository.getSession()
 }

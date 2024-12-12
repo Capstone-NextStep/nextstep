@@ -1,9 +1,9 @@
 package com.example.nextstep.presentation.home
 
-
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,10 +15,12 @@ import com.example.nextstep.R
 import com.example.nextstep.data.Result
 import com.example.nextstep.data.model.RoadmapProgressItem
 import com.example.nextstep.databinding.FragmentHomeBinding
+import com.example.nextstep.preference.TokenPreference
 import com.example.nextstep.presentation.CV.CvInputActivity
+import com.example.nextstep.presentation.ViewModel.AuthViewModel
+import com.example.nextstep.presentation.ViewModel.AuthViewModelFactory
 import com.example.nextstep.presentation.ViewModel.RoadmapViewModel
 import com.example.nextstep.presentation.ViewModel.RoadmapViewModelFactory
-import com.example.nextstep.presentation.ViewModel.SharedViewModel
 import com.example.nextstep.presentation.gemini.GeminiActivity
 import com.example.nextstep.presentation.testscreen.TestActivity
 import com.example.nextstep.utils.OnFragmentInteractionListener
@@ -28,6 +30,8 @@ import com.google.android.material.snackbar.Snackbar
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
+    private lateinit var tokenPreference: TokenPreference
+    private lateinit var authViewModel: AuthViewModel
 
     private var listener: OnFragmentInteractionListener? = null
     private var idUser: String? = null
@@ -57,12 +61,20 @@ class HomeFragment : Fragment() {
         val viewModel by viewModels<RoadmapViewModel> {
             factory
         }
-        val sharedViewModel = ViewModelProvider(requireActivity())[SharedViewModel::class.java]
+        val factory2: AuthViewModelFactory = AuthViewModelFactory.getInstance(requireContext())
+        authViewModel = ViewModelProvider(this, factory2)[AuthViewModel::class.java]
 
+        tokenPreference = TokenPreference(requireContext())
 
-        //TODO: ERROR JIKA USER BELUM PILIH ROAD MAP
-        sharedViewModel.userId.observe(viewLifecycleOwner) { id ->
-            viewModel.getUserRoadmapById(id).observe(viewLifecycleOwner) { result ->
+        val token = tokenPreference.getToken()
+        val userId = tokenPreference.getUserId()
+        Log.d("HomeFragment", "Token: $token")
+        Log.d("HomeFragment", "userId: $userId")
+
+        //not necessary try just using user n token from preference
+        authViewModel.getSession().observe(viewLifecycleOwner) { user ->
+            Log.d("HomeFragment", "userId: $user")
+            viewModel.getUserRoadmapById(user.uid, user.token!!).observe(viewLifecycleOwner) { result ->
                 when (result) {
                     is Result.Loading -> {
                         binding.progressBar.visibility = View.VISIBLE
@@ -82,12 +94,61 @@ class HomeFragment : Fragment() {
                     is Result.Error -> {
                         binding.progressBar.visibility = View.GONE
                         showSnackBar(result.error)
-                        //solusi sementara jika user belum ada roadmap
-//                        startActivity(Intent(requireContext(), TestActivity::class.java))
                     }
                 }
             }
         }
+
+        /*viewModel.getUserRoadmapById(userId!!, token!!).observe(viewLifecycleOwner) { result ->
+            when (result) {
+                is Result.Loading -> {
+                    binding.progressBar.visibility = View.VISIBLE
+                }
+
+                is Result.Success -> {
+                    binding.progressBar.visibility = View.GONE
+                    if (result.data.career.isNotEmpty()) {
+                        binding.tvGreeting.text =
+                            getString(R.string.txt_greeting, result.data.name)
+                        binding.tvCareer.text = result.data.career
+                        setProgress(result.data.roadmapProgress)
+                        idUser = result.data.userId
+                    }
+                }
+
+                is Result.Error -> {
+                    binding.progressBar.visibility = View.GONE
+                    showSnackBar(result.error)
+                }
+            }
+        }*/
+
+
+        /*sharedViewModel.userId.observe(viewLifecycleOwner) { id ->
+            viewModel.getUserRoadmapById(id, token!!).observe(viewLifecycleOwner) { result ->
+                when (result) {
+                    is Result.Loading -> {
+                        binding.progressBar.visibility = View.VISIBLE
+                    }
+
+                    is Result.Success -> {
+                        binding.progressBar.visibility = View.GONE
+                        if (result.data.career.isNotEmpty()) {
+                            binding.tvGreeting.text =
+                                getString(R.string.txt_greeting, result.data.name)
+                            binding.tvCareer.text = result.data.career
+                            setProgress(result.data.roadmapProgress)
+                            idUser = result.data.userId
+                        }
+                    }
+
+                    is Result.Error -> {
+                        binding.progressBar.visibility = View.GONE
+                        showSnackBar(result.error)
+                    }
+                }
+            }
+        }*/
 
         binding.ivMenuRoadmap.setOnClickListener {
             listener?.onRoadmapSelected()

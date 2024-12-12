@@ -15,7 +15,7 @@ import kotlinx.coroutines.tasks.await
 
 class AuthRepository private constructor(
     private val apiService: ApiService,
-    private val appPreference: AppPreference
+    private val appPreference: AppPreference,
 ) {
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
 
@@ -38,6 +38,7 @@ class AuthRepository private constructor(
         }
     }
 
+    //future planning for refactor
     /*suspend fun register(
         name: String,
         email: String,
@@ -95,7 +96,7 @@ class AuthRepository private constructor(
     companion object {
         fun getInstance(
             apiService: ApiService,
-            appPreference: AppPreference
+            appPreference: AppPreference,
         ): AuthRepository =
             AuthRepository(apiService, appPreference)
     }

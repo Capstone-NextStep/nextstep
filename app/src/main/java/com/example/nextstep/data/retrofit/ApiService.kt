@@ -12,15 +12,11 @@ import com.example.nextstep.data.model.SetRoadmapResponse
 import com.example.nextstep.data.model.SkillRequest
 import com.example.nextstep.data.model.TemplateResponse
 import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import retrofit2.http.Body
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
-import retrofit2.http.Multipart
+import retrofit2.http.Header
 import retrofit2.http.POST
 import retrofit2.http.PUT
-import retrofit2.http.Part
 import retrofit2.http.Path
 
 interface ApiService {
@@ -30,14 +26,17 @@ interface ApiService {
         @Body registerRequest: RegisterRequest
     ): RegisterResponse
 
+    ///Header Authorization is Bearer Token
     @POST("api/predict")
     suspend fun getPrediction(
+        @Header("Authorization") token: String,
         @Body skills: SkillRequest,
     ): PredictedJobResponse
 
     //user id
     @PUT("api/roadmaps/set/{id}")
     suspend fun setRoadmap(
+        @Header("Authorization") token: String,
         @Path("id") id: String,
         @Body career: CareerUpdate
     ): SetRoadmapResponse
@@ -45,21 +44,26 @@ interface ApiService {
     //roadmap id
     @GET("api/roadmaps/{id}")
     suspend fun getRoadmapById(
+        @Header("Authorization") token: String,
         @Path("id") id: String
     ): DetailRoadmapResponse
 
     @GET("api/roadmaps")
-    suspend fun getAllRoadmaps(): RoadmapsResponse
+    suspend fun getAllRoadmaps(
+        @Header("Authorization") token: String,
+    ): RoadmapsResponse
 
     //user id
     @GET("api/users/{id}")
     suspend fun getUserById(
+        @Header("Authorization") token: String,
         @Path("id") id: String
     ): UserRoadmapResponse
 
 
     @POST("api/details/{id}")
     suspend fun setProfile(
+        @Header("Authorization") token: String,
         @Path("id") id: String,
         @Body requestBody: MultipartBody
     ): SetProfileResponse
@@ -67,12 +71,14 @@ interface ApiService {
     //user id
     @GET("api/details/{id}")
     suspend fun getDetailProfile(
+        @Header("Authorization") token: String,
         @Path("id") id: String
     ): UserRoadmapResponse
 
     //user id
     @GET("api/generate/{id}")
     suspend fun generateTemplate(
+        @Header("Authorization") token: String,
         @Path("id") id: String
     ): TemplateResponse
 }

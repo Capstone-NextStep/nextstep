@@ -10,9 +10,9 @@ import com.example.nextstep.di.Injection
 import kotlinx.coroutines.launch
 
 class CareerDetailViewModel(private val appRepository: AppRepository): ViewModel() {
-    fun getRoadmapById(id: String) = appRepository.getRoadmapById(id)
+    fun getRoadmapById(id: String, token: String) = appRepository.getRoadmapById(id, token)
 
-    fun setUserRoadmap(userId: String, career: CareerUpdate) = appRepository.setRoadmap(userId, career)
+    fun setUserRoadmap(userId: String, token: String, career: CareerUpdate) = appRepository.setRoadmap(userId, token, career)
 
     fun getUserId() = appRepository.getUserId()
 

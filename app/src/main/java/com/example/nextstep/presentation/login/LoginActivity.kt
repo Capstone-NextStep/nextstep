@@ -4,12 +4,14 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.nextstep.data.AuthResult
 import com.example.nextstep.databinding.ActivityLoginBinding
+import com.example.nextstep.preference.TokenPreference
 import com.example.nextstep.presentation.MainActivity
 import com.example.nextstep.presentation.ViewModel.AuthViewModel
 import com.example.nextstep.presentation.ViewModel.AuthViewModelFactory
@@ -20,6 +22,7 @@ import com.google.android.material.snackbar.Snackbar
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private lateinit var authViewModel: AuthViewModel
+    private lateinit var tokenPreference: TokenPreference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +32,7 @@ class LoginActivity : AppCompatActivity() {
 
         val factory: AuthViewModelFactory = AuthViewModelFactory.getInstance(this)
         authViewModel = ViewModelProvider(this, factory)[AuthViewModel::class.java]
+        tokenPreference = TokenPreference(this)
 
         binding.btnLogin.setOnClickListener {
             val email = binding.etEmail.text.toString()
@@ -41,19 +45,27 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
-        authViewModel.loginResult.observe(this){result ->
-            when(result){
-                is AuthResult.Loading ->{
+        authViewModel.loginResult.observe(this) { result ->
+            when (result) {
+                is AuthResult.Loading -> {
                     binding.progressBar.visibility = View.VISIBLE
                 }
+
                 is AuthResult.Success -> {
                     binding.progressBar.visibility = View.GONE
                     showSnackBar("Login successful! Welcome ${result.user.displayName}")
+                    //save session
+                    result.token?.let {
+                        tokenPreference.saveToken(it)
+                        Log.d("LoginActivity", "Token saved: $it")
+                    }
+                    tokenPreference.saveUserId(result.user.uid)
                     Handler(Looper.getMainLooper()).postDelayed({
                         startActivity(Intent(this, MainActivity::class.java))
                         finish()
                     }, 2000L)
                 }
+
                 is AuthResult.Error -> {
                     binding.progressBar.visibility = View.GONE
                     showSnackBar(result.message)

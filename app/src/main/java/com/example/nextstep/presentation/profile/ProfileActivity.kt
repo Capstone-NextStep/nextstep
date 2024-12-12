@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.nextstep.data.Result
 import com.example.nextstep.databinding.ActivityProfileBinding
+import com.example.nextstep.preference.TokenPreference
 import com.example.nextstep.presentation.MainActivity
 import com.example.nextstep.presentation.ViewModel.ProfileViewModel
 import com.example.nextstep.presentation.ViewModel.ProfileViewModelFactory
@@ -24,8 +25,10 @@ class ProfileActivity : AppCompatActivity() {
     private lateinit var binding: ActivityProfileBinding
     private var currentImageUri: Uri? = null
     private var id: String? = null
+    private var token: String? = null
 
     private lateinit var viewModel: ProfileViewModel
+    private lateinit var tokenPreference: TokenPreference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +42,8 @@ class ProfileActivity : AppCompatActivity() {
         viewModel.getUserId().observe(this) { userid ->
             id = userid
         }
+        tokenPreference = TokenPreference(this)
+        token = tokenPreference.getToken()
 
         binding.lyProfileItem.tvAddPicture.setOnClickListener { startGallery() }
 
@@ -106,7 +111,8 @@ class ProfileActivity : AppCompatActivity() {
                         currentPosition = position,
                         institution = institution,
                         major = major,
-                        bio = bio
+                        bio = bio,
+                        token!!
                     ).observe(this) { result ->
                         if (result != null) {
                             when (result) {

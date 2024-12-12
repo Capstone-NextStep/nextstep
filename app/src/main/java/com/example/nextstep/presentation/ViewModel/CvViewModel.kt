@@ -7,7 +7,7 @@ import com.example.nextstep.data.repository.AppRepository
 import com.example.nextstep.di.Injection
 
 class CvViewModel(private val appRepository: AppRepository): ViewModel() {
-    fun generateTemplate(userId: String) = appRepository.generateTemplate(userId)
+    fun generateTemplate(userId: String, token: String) = appRepository.generateTemplate(userId, token)
 }
 
 class CvViewModelFactory private constructor(private val appRepository: AppRepository) :

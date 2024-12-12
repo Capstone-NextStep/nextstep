@@ -15,6 +15,7 @@ import com.example.nextstep.data.Result
 import com.example.nextstep.data.model.PredictedJobsItem
 import com.example.nextstep.data.model.SkillRequest
 import com.example.nextstep.databinding.ActivityTestBinding
+import com.example.nextstep.preference.TokenPreference
 import com.example.nextstep.presentation.MainActivity
 import com.example.nextstep.presentation.ViewModel.JobPredictViewModel
 import com.example.nextstep.presentation.ViewModel.JobPredictViewModelFactory
@@ -27,6 +28,7 @@ import java.util.ArrayList
 class TestActivity : AppCompatActivity() {
     private lateinit var binding: ActivityTestBinding
     private lateinit var viewModel: JobPredictViewModel
+    private lateinit var tokenPreference: TokenPreference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +38,8 @@ class TestActivity : AppCompatActivity() {
 
         val factory: JobPredictViewModelFactory = JobPredictViewModelFactory.getInstance(this)
         viewModel = ViewModelProvider(this, factory)[JobPredictViewModel::class.java]
+        tokenPreference = TokenPreference(this)
+        val token = tokenPreference.getToken()
 
         //set spinner
         setSpinner()
@@ -46,7 +50,7 @@ class TestActivity : AppCompatActivity() {
                 binding.tvTestSpinner2.selectedItem.toString(),
                 binding.tvTestSpinner3.selectedItem.toString()
             ))
-            viewModel.getPrediction(skills).observe(this){result ->
+            viewModel.getPrediction(token!!, skills).observe(this){result ->
                 when (result) {
                     is Result.Loading -> {
                         binding.progressBar.visibility = View.VISIBLE

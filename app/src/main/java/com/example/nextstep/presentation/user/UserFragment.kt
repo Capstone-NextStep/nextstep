@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.nextstep.R
 import com.example.nextstep.databinding.DialogItemBinding
 import com.example.nextstep.databinding.FragmentUserBinding
+import com.example.nextstep.preference.TokenPreference
 import com.example.nextstep.presentation.ViewModel.AuthViewModel
 import com.example.nextstep.presentation.ViewModel.AuthViewModelFactory
 import com.example.nextstep.presentation.profile.ProfileActivity
@@ -23,6 +24,7 @@ class UserFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var authViewModel: AuthViewModel
+    private lateinit var tokenPreference: TokenPreference
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,6 +40,7 @@ class UserFragment : Fragment() {
 
         val factory: AuthViewModelFactory = AuthViewModelFactory.getInstance(requireContext())
         authViewModel = ViewModelProvider(this, factory)[AuthViewModel::class.java]
+        tokenPreference = TokenPreference(requireContext())
 
         authViewModel.getSession().observe(viewLifecycleOwner) { user ->
             binding.tvGreeting.text = getString(R.string.txt_greeting, user.displayName)
@@ -80,6 +83,7 @@ class UserFragment : Fragment() {
         }
 
         dialogItem.btnChoose.setOnClickListener {
+            tokenPreference.removePref()
             authViewModel.logout()
             dialog.dismiss()
         }

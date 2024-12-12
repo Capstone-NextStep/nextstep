@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.nextstep.data.Result
 import com.example.nextstep.data.model.RoadmapProgressItem
 import com.example.nextstep.databinding.FragmentRoadmapBinding
+import com.example.nextstep.preference.TokenPreference
 import com.example.nextstep.presentation.ViewModel.RoadmapViewModel
 import com.example.nextstep.presentation.ViewModel.RoadmapViewModelFactory
 import com.example.nextstep.presentation.ViewModel.SharedViewModel
@@ -22,6 +23,7 @@ class RoadmapFragment : Fragment() {
     private var _binding: FragmentRoadmapBinding? = null
     private val binding get() = _binding!!
     private var idUser: String? = null
+    private lateinit var tokenPreference: TokenPreference
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,9 +42,46 @@ class RoadmapFragment : Fragment() {
             factory
         }
         val sharedViewModel = ViewModelProvider(requireActivity())[SharedViewModel::class.java]
+        tokenPreference = TokenPreference(requireContext())
+        val token = tokenPreference.getToken()
+        val userId = tokenPreference.getUserId()
 
-        sharedViewModel.userId.observe(viewLifecycleOwner){ id ->
-            viewModel.getUserRoadmapById(id).observe(viewLifecycleOwner) { result ->
+        viewModel.getUserRoadmapById(userId!!, token!!).observe(viewLifecycleOwner) { result ->
+            when(result){
+                is Result.Loading ->{
+                    binding.progressBar.visibility = View.VISIBLE
+                }
+                is Result.Success ->{
+                    binding.progressBar.visibility = View.GONE
+                    if(result.data.career.isNotEmpty()){
+                        setData(result.data.roadmapProgress)
+                        setProgress(result.data.roadmapProgress)
+                        binding.tvChoosenCareer.text = result.data.career
+
+                        binding.tvNoCareerInfo.visibility = View.GONE
+                        binding.pbRoadmap.visibility = View.VISIBLE
+                        binding.rvRoadmap.visibility = View.VISIBLE
+                        binding.tvProgress.visibility = View.VISIBLE
+                        binding.tvRoadmapTitle.visibility = View.VISIBLE
+                        binding.tvChoosenCareer.visibility = View.VISIBLE
+                    } else {
+                        binding.tvNoCareerInfo.visibility = View.VISIBLE
+                        binding.pbRoadmap.visibility = View.GONE
+                        binding.rvRoadmap.visibility = View.GONE
+                        binding.tvProgress.visibility = View.GONE
+                        binding.tvRoadmapTitle.visibility = View.GONE
+                        binding.tvChoosenCareer.visibility = View.GONE
+                    }
+                }
+                is Result.Error ->{
+                    binding.progressBar.visibility = View.GONE
+                    showSnackBar(result.error)
+                }
+            }
+        }
+
+        /*sharedViewModel.userId.observe(viewLifecycleOwner){ id ->
+            viewModel.getUserRoadmapById(id, token!!).observe(viewLifecycleOwner) { result ->
                 when(result){
                     is Result.Loading ->{
                         binding.progressBar.visibility = View.VISIBLE
@@ -75,7 +114,7 @@ class RoadmapFragment : Fragment() {
                     }
                 }
             }
-        }
+        }*/
 
 
         val layoutManager = LinearLayoutManager(context)

@@ -10,6 +10,7 @@ import com.example.nextstep.data.Result
 import com.example.nextstep.data.model.CareerUpdate
 import com.example.nextstep.data.model.RoadmapDetail
 import com.example.nextstep.databinding.ActivityCareerDetailBinding
+import com.example.nextstep.preference.TokenPreference
 import com.example.nextstep.presentation.MainActivity
 import com.example.nextstep.presentation.ViewModel.CareerDetailViewModel
 import com.example.nextstep.presentation.ViewModel.CareerDetailViewModelFactory
@@ -18,6 +19,7 @@ import com.google.android.material.snackbar.Snackbar
 class CareerDetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCareerDetailBinding
     private lateinit var viewModel: CareerDetailViewModel
+    private lateinit var tokenPreference: TokenPreference
     private var steps: List<String> = emptyList()
     private var career: String = ""
     private var userId: String = ""
@@ -30,10 +32,12 @@ class CareerDetailActivity : AppCompatActivity() {
 
         val factory: CareerDetailViewModelFactory = CareerDetailViewModelFactory.getInstance(this)
         viewModel = ViewModelProvider(this, factory)[CareerDetailViewModel::class.java]
+        tokenPreference = TokenPreference(this)
+        val token = tokenPreference.getToken()
 
         //getting id intent
         val id = intent.getStringExtra(EXTRA_ID)
-        viewModel.getRoadmapById(id!!).observe(this) { result ->
+        viewModel.getRoadmapById(id!!, token!!).observe(this) { result ->
             when (result) {
                 is Result.Loading -> {
                     binding.progressBar.visibility = View.VISIBLE
@@ -76,7 +80,7 @@ class CareerDetailActivity : AppCompatActivity() {
                     career = career
                 )
                 viewModel.saveUserCareer(career)
-                viewModel.setUserRoadmap(userId, careerUpdate).observe(this){ result ->
+                viewModel.setUserRoadmap(userId, token, careerUpdate).observe(this){ result ->
                     when(result){
                         is Result.Loading ->{
                             //show loading

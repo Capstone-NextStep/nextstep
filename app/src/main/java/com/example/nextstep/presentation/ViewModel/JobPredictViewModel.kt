@@ -16,7 +16,7 @@ class JobPredictViewModel(private val appRepository: AppRepository) : ViewModel(
     private val _result = MutableLiveData<Result<PredictedJobResponse>>()
     val result: LiveData<Result<PredictedJobResponse>> = _result
 
-    fun getPrediction(skills: SkillRequest) = appRepository.getPrediction(skills)
+    fun getPrediction(token: String, skills: SkillRequest) = appRepository.getPrediction(token, skills)
 
 
 }

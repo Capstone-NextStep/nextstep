@@ -27,14 +27,17 @@ import java.io.File
 
 class AppRepository private constructor(
     private val apiService: ApiService,
-    private val appPreference: AppPreference
+    private val appPreference: AppPreference,
 ) {
 
     //getPrediction
-    fun getPrediction(skills: SkillRequest): LiveData<Result<List<PredictedJobsItem>>> = liveData {
+    fun getPrediction(
+        token: String,
+        skills: SkillRequest
+    ): LiveData<Result<List<PredictedJobsItem>>> = liveData {
         emit(Result.Loading)
         try {
-            val response = apiService.getPrediction(skills)
+            val response = apiService.getPrediction(token = "Bearer $token", skills = skills)
             emit(Result.Success(response.predictedJobs))
         } catch (e: HttpException) {
             val errorBody = e.response()?.errorBody()?.string()
@@ -43,11 +46,15 @@ class AppRepository private constructor(
     }
 
     //setRoadmap
-    fun setRoadmap(id: String, career: CareerUpdate): LiveData<Result<SetRoadmapResponse>> =
+    fun setRoadmap(
+        id: String,
+        token: String,
+        career: CareerUpdate
+    ): LiveData<Result<SetRoadmapResponse>> =
         liveData {
             emit(Result.Loading)
             try {
-                val response = apiService.setRoadmap(id, career)
+                val response = apiService.setRoadmap(id = id, token = "Bearer $token", career = career)
                 emit(Result.Success(response))
             } catch (e: Exception) {
                 emit(Result.Error(e.message.toString()))
@@ -55,10 +62,10 @@ class AppRepository private constructor(
         }
 
     //getRoadmapById
-    fun getRoadmapById(id: String): LiveData<Result<RoadmapDetail>> = liveData {
+    fun getRoadmapById(id: String, token: String): LiveData<Result<RoadmapDetail>> = liveData {
         emit(Result.Loading)
         try {
-            val response = apiService.getRoadmapById(id)
+            val response = apiService.getRoadmapById(id = id, token = "Bearer $token")
             emit(Result.Success(response.roadmap))
         } catch (e: Exception) {
             emit(Result.Error(e.message.toString()))
@@ -66,10 +73,10 @@ class AppRepository private constructor(
     }
 
     //getAllRoadmaps
-    fun getAllRoadmaps(): LiveData<Result<List<RoadmapsItem>>> = liveData {
+    fun getAllRoadmaps(token: String): LiveData<Result<List<RoadmapsItem>>> = liveData {
         emit(Result.Loading)
         try {
-            val response = apiService.getAllRoadmaps()
+            val response = apiService.getAllRoadmaps("Bearer $token")
             emit(Result.Success(response.roadmaps))
         } catch (e: Exception) {
             emit(Result.Error(e.message.toString()))
@@ -77,10 +84,10 @@ class AppRepository private constructor(
     }
 
     //getUserRoadmapById
-    fun getUserRoadmapById(userId: String): LiveData<Result<UserDetail>> = liveData {
+    fun getUserRoadmapById(userId: String, token: String): LiveData<Result<UserDetail>> = liveData {
         emit(Result.Loading)
         try {
-            val response = apiService.getUserById(userId)
+            val response = apiService.getUserById(id = userId, token = "Bearer $token")
             emit(Result.Success(response.user))
             CoroutineScope(Dispatchers.IO).launch {
                 appPreference.saveUserCareer(response.user.career)
@@ -91,10 +98,10 @@ class AppRepository private constructor(
     }
 
     //generateTemplate
-    fun generateTemplate(id: String): LiveData<Result<TemplateResponse>> = liveData {
+    fun generateTemplate(id: String, token: String): LiveData<Result<TemplateResponse>> = liveData {
         emit(Result.Loading)
         try {
-            val response = apiService.generateTemplate(id)
+            val response = apiService.generateTemplate(id = id, token = "Bearer $token")
             emit(Result.Success(response))
         } catch (e: Exception) {
             emit(Result.Error(e.message.toString()))
@@ -110,7 +117,8 @@ class AppRepository private constructor(
         currentPosition: String,
         institution: String,
         major: String,
-        bio: String
+        bio: String,
+        token: String
     ): LiveData<Result<Data>> = liveData {
         emit(Result.Loading)
         val requestBody = MultipartBody.Builder().apply {
@@ -131,7 +139,7 @@ class AppRepository private constructor(
 
         try {
             val response = apiService.setProfile(
-                id, requestBody
+                id = id, token = "Bearer $token", requestBody = requestBody
             )
             emit(Result.Success(response.data))
         } catch (e: Exception) {
@@ -164,7 +172,7 @@ class AppRepository private constructor(
 
         fun getInstance(
             apiService: ApiService,
-            appPreference: AppPreference
+            appPreference: AppPreference,
         ): AppRepository = AppRepository(apiService, appPreference)
     }
 }

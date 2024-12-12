@@ -22,7 +22,8 @@ class ProfileViewModel(private val appRepository: AppRepository) : ViewModel() {
         currentPosition: String,
         institution: String,
         major: String,
-        bio: String
+        bio: String,
+        token: String
     ) = appRepository.setProfile(
         imageFile = imageFile,
         id = id,
@@ -32,7 +33,8 @@ class ProfileViewModel(private val appRepository: AppRepository) : ViewModel() {
         currentPosition = currentPosition,
         institution = institution,
         major = major,
-        bio = bio
+        bio = bio,
+        token = token
     )
 }
 

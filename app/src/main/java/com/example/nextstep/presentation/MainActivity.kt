@@ -10,6 +10,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.example.nextstep.R
 import com.example.nextstep.databinding.ActivityMainBinding
+import com.example.nextstep.preference.TokenPreference
 import com.example.nextstep.presentation.ViewModel.AuthViewModel
 import com.example.nextstep.presentation.ViewModel.AuthViewModelFactory
 import com.example.nextstep.presentation.ViewModel.SharedViewModel
@@ -24,7 +25,9 @@ class MainActivity : AppCompatActivity(), OnFragmentInteractionListener {
     private lateinit var navController: NavController
 
     private lateinit var authViewModel: AuthViewModel
+    //sumber bug
     private lateinit var sharedViewModel: SharedViewModel
+    private lateinit var tokenPreference: TokenPreference
     private var userId: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,6 +39,7 @@ class MainActivity : AppCompatActivity(), OnFragmentInteractionListener {
         val factory: AuthViewModelFactory = AuthViewModelFactory.getInstance(this)
         authViewModel = ViewModelProvider(this, factory)[AuthViewModel::class.java]
         sharedViewModel = ViewModelProvider(this)[SharedViewModel::class.java]
+        tokenPreference = TokenPreference(this)
 
         authViewModel.getSession().observe(this) { user ->
             if (user.token!!.isEmpty()) {
@@ -45,6 +49,7 @@ class MainActivity : AppCompatActivity(), OnFragmentInteractionListener {
             } else {
                 userId = user.uid
                 sharedViewModel.setUserId(userId)
+//                tokenPreference.saveUserId(user.uid)
             }
         }
 

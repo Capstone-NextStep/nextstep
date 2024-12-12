@@ -8,7 +8,7 @@ import com.example.nextstep.di.Injection
 
 class SearchRoadmapViewModel(private val appRepository: AppRepository) : ViewModel() {
 
-    fun getAllRoadmaps() = appRepository.getAllRoadmaps()
+    fun getAllRoadmaps(token: String) = appRepository.getAllRoadmaps(token)
 }
 
 class SearchRoadmapViewModelFactory private constructor(private val appRepository: AppRepository) :
