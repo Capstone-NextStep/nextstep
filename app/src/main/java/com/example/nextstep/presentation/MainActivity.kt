@@ -15,6 +15,7 @@ import com.example.nextstep.presentation.ViewModel.AuthViewModelFactory
 import com.example.nextstep.presentation.ViewModel.SharedViewModel
 import com.example.nextstep.presentation.gemini.GeminiActivity
 import com.example.nextstep.presentation.login.LoginActivity
+import com.example.nextstep.presentation.testscreen.TestActivity
 import com.example.nextstep.utils.OnFragmentInteractionListener
 
 
@@ -36,8 +37,8 @@ class MainActivity : AppCompatActivity(), OnFragmentInteractionListener {
         authViewModel = ViewModelProvider(this, factory)[AuthViewModel::class.java]
         sharedViewModel = ViewModelProvider(this)[SharedViewModel::class.java]
 
-        authViewModel.getSession().observe(this){ user ->
-            if(user.token!!.isEmpty()){
+        authViewModel.getSession().observe(this) { user ->
+            if (user.token!!.isEmpty()) {
                 val intent = Intent(this, LoginActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                 startActivity(intent)
@@ -46,7 +47,6 @@ class MainActivity : AppCompatActivity(), OnFragmentInteractionListener {
                 sharedViewModel.setUserId(userId)
             }
         }
-
 
 
         //using navGraph

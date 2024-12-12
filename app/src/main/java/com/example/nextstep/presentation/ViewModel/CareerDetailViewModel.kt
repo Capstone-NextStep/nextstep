@@ -3,11 +3,24 @@ package com.example.nextstep.presentation.ViewModel
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
+import com.example.nextstep.data.model.CareerUpdate
 import com.example.nextstep.data.repository.AppRepository
 import com.example.nextstep.di.Injection
+import kotlinx.coroutines.launch
 
 class CareerDetailViewModel(private val appRepository: AppRepository): ViewModel() {
     fun getRoadmapById(id: String) = appRepository.getRoadmapById(id)
+
+    fun setUserRoadmap(userId: String, career: CareerUpdate) = appRepository.setRoadmap(userId, career)
+
+    fun getUserId() = appRepository.getUserId()
+
+    fun saveUserCareer(career: String) {
+        viewModelScope.launch {
+            appRepository.saveUserCareer(career)
+        }
+    }
 }
 
 class CareerDetailViewModelFactory private constructor(private val appRepository: AppRepository) :

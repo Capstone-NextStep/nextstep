@@ -1,5 +1,6 @@
 package com.example.nextstep.presentation.home
 
+
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -24,12 +25,12 @@ import com.example.nextstep.utils.OnFragmentInteractionListener
 import com.google.android.material.snackbar.Snackbar
 
 
-
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
     private var listener: OnFragmentInteractionListener? = null
+    private var idUser: String? = null
 
 
     override fun onAttach(context: Context) {
@@ -58,6 +59,8 @@ class HomeFragment : Fragment() {
         }
         val sharedViewModel = ViewModelProvider(requireActivity())[SharedViewModel::class.java]
 
+
+        //TODO: ERROR JIKA USER BELUM PILIH ROAD MAP
         sharedViewModel.userId.observe(viewLifecycleOwner) { id ->
             viewModel.getUserRoadmapById(id).observe(viewLifecycleOwner) { result ->
                 when (result) {
@@ -72,12 +75,15 @@ class HomeFragment : Fragment() {
                                 getString(R.string.txt_greeting, result.data.name)
                             binding.tvCareer.text = result.data.career
                             setProgress(result.data.roadmapProgress)
+                            idUser = result.data.userId
                         }
                     }
 
                     is Result.Error -> {
                         binding.progressBar.visibility = View.GONE
                         showSnackBar(result.error)
+                        //solusi sementara jika user belum ada roadmap
+//                        startActivity(Intent(requireContext(), TestActivity::class.java))
                     }
                 }
             }
@@ -95,6 +101,7 @@ class HomeFragment : Fragment() {
 
         binding.ivMenuCv.setOnClickListener {
             val intent = Intent(requireContext(), CvInputActivity::class.java)
+            intent.putExtra(CvInputActivity.EXTRA_ID, idUser)
             startActivity(intent)
         }
 
@@ -119,6 +126,7 @@ class HomeFragment : Fragment() {
         super.onDetach()
         listener = null
     }
+
 
     private fun setProgress(roadmapProgress: List<RoadmapProgressItem>) {
         val progress = roadmapProgress.filter { it.isDone }

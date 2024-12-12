@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="36dp"
             android:layout_marginTop="60dp"
-            android:text="@string/txt_greeting"
+            tools:text="@string/txt_greeting"
             android:textColor="@color/white"
             android:textSize="24sp"
             android:textStyle="bold"

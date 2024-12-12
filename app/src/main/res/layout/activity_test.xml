@@ -82,7 +82,7 @@
         android:textSize="16sp"
         android:textStyle="bold"
         android:textColor="@color/white"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         />
     <!-- Question 2 Card -->
     <ImageView
@@ -128,7 +128,7 @@
         android:textSize="16sp"
         android:textStyle="bold"
         android:textColor="@color/white"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         />
 
     <ImageView
@@ -174,12 +174,34 @@
         app:layout_constraintStart_toStartOf="@id/iv_question3_bg"
         android:text="@string/submit"
         android:layout_marginEnd="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
         android:backgroundTint="@color/white"
         android:textColor="@color/color_primary"
         app:cornerRadius="16dp"
         android:textSize="16sp"
+        />
+
+    <TextView
+        android:id="@+id/tv_skip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:drawableEndCompat="@drawable/baseline_double_arrow_24"
+        app:layout_constraintTop_toBottomOf="@id/btn_submit"
+        app:layout_constraintStart_toStartOf="@id/btn_submit"
+        android:text="@string/txt_already_taken_the_test_skip_here"
+        android:textColor="@color/white"
+        android:layout_marginTop="4dp"
+        />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/btn_submit"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         />
 
 

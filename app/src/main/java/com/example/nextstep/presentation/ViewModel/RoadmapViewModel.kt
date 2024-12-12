@@ -8,6 +8,8 @@ import com.example.nextstep.di.Injection
 
 class RoadmapViewModel(private val appRepository: AppRepository): ViewModel() {
     fun getUserRoadmapById(userId: String) = appRepository.getUserRoadmapById(userId)
+
+    fun getSession() = appRepository.getSession()
 }
 
 class RoadmapViewModelFactory private constructor(private val appRepository: AppRepository) :

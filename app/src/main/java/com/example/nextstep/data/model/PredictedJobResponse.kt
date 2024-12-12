@@ -1,6 +1,8 @@
 package com.example.nextstep.data.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
 data class PredictedJobResponse(
 
@@ -14,6 +16,7 @@ data class PredictedJobResponse(
 	val predictedJobs: List<PredictedJobsItem>
 )
 
+@Parcelize
 data class PredictedJobsItem(
 
 	@field:SerializedName("title")
@@ -21,4 +24,4 @@ data class PredictedJobsItem(
 
 	@field:SerializedName("roadmapId")
 	val roadmapId: String
-)
+) : Parcelable

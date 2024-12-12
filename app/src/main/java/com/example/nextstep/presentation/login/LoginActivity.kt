@@ -2,6 +2,8 @@ package com.example.nextstep.presentation.login
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -11,6 +13,7 @@ import com.example.nextstep.databinding.ActivityLoginBinding
 import com.example.nextstep.presentation.MainActivity
 import com.example.nextstep.presentation.ViewModel.AuthViewModel
 import com.example.nextstep.presentation.ViewModel.AuthViewModelFactory
+import com.example.nextstep.presentation.signup.SignUpActivity
 import com.google.android.material.snackbar.Snackbar
 
 
@@ -46,14 +49,20 @@ class LoginActivity : AppCompatActivity() {
                 is AuthResult.Success -> {
                     binding.progressBar.visibility = View.GONE
                     showSnackBar("Login successful! Welcome ${result.user.displayName}")
-                    startActivity(Intent(this, MainActivity::class.java))
-                    finish()
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        startActivity(Intent(this, MainActivity::class.java))
+                        finish()
+                    }, 2000L)
                 }
                 is AuthResult.Error -> {
                     binding.progressBar.visibility = View.GONE
                     showSnackBar(result.message)
                 }
             }
+        }
+
+        binding.tvToSignup.setOnClickListener {
+            startActivity(Intent(this, SignUpActivity::class.java))
         }
     }
 

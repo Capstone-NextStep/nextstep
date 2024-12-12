@@ -9,18 +9,51 @@ import android.view.WindowManager
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
+import com.example.nextstep.data.Result
 import com.example.nextstep.data.model.CVData
 import com.example.nextstep.databinding.ActivityCvInputBinding
 import com.example.nextstep.databinding.CvPreviewItemBinding
+import com.example.nextstep.presentation.ViewModel.CvViewModel
+import com.example.nextstep.presentation.ViewModel.CvViewModelFactory
+import com.example.nextstep.presentation.ViewModel.SharedViewModel
+import com.google.android.material.snackbar.Snackbar
 
 class CvInputActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCvInputBinding
+    private lateinit var viewModel: CvViewModel
+    private lateinit var sharedViewModel: SharedViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         binding = ActivityCvInputBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val factory: CvViewModelFactory = CvViewModelFactory.getInstance(this)
+        viewModel = ViewModelProvider(this, factory)[CvViewModel::class.java]
+        sharedViewModel = ViewModelProvider(this)[SharedViewModel::class.java]
+
+        val idUser = intent.getStringExtra(EXTRA_ID)
+        if(idUser!=null){
+            viewModel.generateTemplate(idUser).observe(this) { result ->
+                when(result){
+                    is Result.Loading ->{
+                        //show loading
+                        binding.progressBar.visibility = View.VISIBLE
+                    }
+                    is Result.Success ->{
+                        //hide loading
+                        binding.progressBar.visibility = View.GONE
+                        binding.etAbout.setText(result.data.resume)
+                    }
+                    is Result.Error ->{
+                        binding.progressBar.visibility = View.GONE
+                        showSnackBar(result.error)
+                    }
+                }
+            }
+        }
 
         binding.llPersonalInfo.layoutTransition.enableTransitionType(LayoutTransition.CHANGING)
         binding.llEducation.layoutTransition.enableTransitionType(LayoutTransition.CHANGING)
@@ -187,5 +220,13 @@ class CvInputActivity : AppCompatActivity() {
         val intent = Intent(this, CVPageActivity::class.java)
         intent.putExtra(CVPageActivity.EXTRA_CV, cvData)
         startActivity(intent)
+    }
+
+    private fun showSnackBar(message: String) {
+        Snackbar.make(binding.root, message, Snackbar.LENGTH_SHORT).show()
+    }
+
+    companion object{
+        const val EXTRA_ID = "extra_id"
     }
 }

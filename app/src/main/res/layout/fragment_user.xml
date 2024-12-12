@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="36dp"
             android:layout_marginTop="60dp"
-            android:text="@string/txt_greeting"
+            tools:text="@string/txt_greeting"
             android:textColor="@color/white"
             android:textSize="24sp"
             android:textStyle="bold"
@@ -28,18 +28,20 @@
             android:id="@+id/tv_career"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/career_placeholder"
+            tools:text="@string/career_placeholder"
             android:textColor="@color/white"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="@id/tv_greeting"
             app:layout_constraintTop_toBottomOf="@id/tv_greeting" />
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/iv_photo_profile"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginEnd="36dp"
-            android:background="@drawable/oval_bg"
+            android:padding="4dp"
+            android:src="@drawable/cat_software_engineer"
+            android:background="@drawable/avatar_bg"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/tv_greeting" />
 

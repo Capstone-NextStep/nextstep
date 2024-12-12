@@ -5,7 +5,8 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.liveData
 import com.example.nextstep.data.AuthResult
 import com.example.nextstep.data.Result
-import com.example.nextstep.data.model.RegisterResponse
+import com.example.nextstep.data.model.RegisterRequest
+import com.example.nextstep.data.model.User
 import com.example.nextstep.data.model.UserSession
 import com.example.nextstep.data.retrofit.ApiService
 import com.example.nextstep.preference.AppPreference
@@ -22,12 +23,13 @@ class AuthRepository private constructor(
         name: String,
         email: String,
         password: String
-    ): LiveData<Result<RegisterResponse>> = liveData {
+    ): LiveData<Result<User>> = liveData {
         emit(Result.Loading)
         try {
-            val response = apiService.register(name, email, password)
+            val registerRequest = RegisterRequest(name, email, password)
+            val response = apiService.register(registerRequest)
             if (response.user.userId.isNullOrEmpty()) {
-                emit(Result.Success(response))
+                emit(Result.Success(response.user))
             } else {
                 emit(Result.Error(response.message))
             }
@@ -35,6 +37,24 @@ class AuthRepository private constructor(
             emit(Result.Error(e.message.toString()))
         }
     }
+
+    /*suspend fun register(
+        name: String,
+        email: String,
+        password: String
+    ): Result<RegisterResponse>{
+        return try {
+            Result.Loading
+            val response = apiService.register(name, email, password)
+            if (response.user.userId.isNullOrEmpty()) {
+                Result.Success(response)
+            } else {
+                Result.Error(response.message)
+            }
+        } catch (e: Exception) {
+            Result.Error(e.message.toString())
+        }
+    }*/
 
     suspend fun login(email: String, password: String): AuthResult {
         return try {
@@ -61,6 +81,10 @@ class AuthRepository private constructor(
 
     fun getSession(): LiveData<UserSession>{
         return appPreference.getUserData().asLiveData()
+    }
+
+    fun getUserCareer(): LiveData<String>{
+        return appPreference.getUserCareer().asLiveData()
     }
 
     suspend fun logout() {

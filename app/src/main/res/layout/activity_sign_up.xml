@@ -170,7 +170,7 @@
         android:backgroundTint="@color/white"
         android:fontFamily="@font/nunito_base"
         android:paddingVertical="8dp"
-        android:text="@string/login"
+        android:text="@string/sign_up"
         android:textColor="@color/button_enabled"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -180,7 +180,7 @@
         app:layout_constraintTop_toBottomOf="@id/tl_confirm_password" />
 
     <TextView
-        android:id="@+id/tv_to_signup"
+        android:id="@+id/tv_to_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginVertical="4dp"
@@ -189,5 +189,16 @@
         android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btn_signup" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/tv_to_login"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

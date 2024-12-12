@@ -29,6 +29,17 @@ class AppPreference private constructor(private val dataStore: DataStore<Prefere
         }
     }
 
+    suspend fun saveUserCareer(career: String) {
+        dataStore.edit { preferences ->
+            preferences[USER_CAREER] = career
+        }
+    }
+
+    fun getUserCareer(): Flow<String> = dataStore.data
+        .map { preferences ->
+            preferences[USER_CAREER] ?: ""
+        }
+
     // Read user data
     fun getUserId(): Flow<String> = dataStore.data
         .map { preferences ->
@@ -72,8 +83,9 @@ class AppPreference private constructor(private val dataStore: DataStore<Prefere
         private val EMAIL_KEY = stringPreferencesKey("email")
         private val DISPLAY_NAME_KEY = stringPreferencesKey("display_name")
         private val TOKEN_KEY = stringPreferencesKey("token")
+        private val USER_CAREER = stringPreferencesKey("career")
 
-        @Volatile
+        /*@Volatile
         private var INSTANCE: AppPreference? = null
 
         fun getInstance(dataStore: DataStore<Preferences>): AppPreference {
@@ -82,6 +94,10 @@ class AppPreference private constructor(private val dataStore: DataStore<Prefere
                 INSTANCE = instance
                 instance
             }
-        }
+        }*/
+
+        fun getInstance(dataStore: DataStore<Preferences>): AppPreference = AppPreference(dataStore)
+
+
     }
 }

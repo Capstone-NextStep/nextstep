@@ -27,9 +27,11 @@
             android:layout_margin="8dp"
             android:background="@drawable/oval_bg"
             android:src="@drawable/baseline_person_outline"
+            android:scaleType="centerCrop"
             />
 
         <TextView
+            android:id="@+id/tv_add_picture"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
@@ -193,10 +195,12 @@
         app:layout_constraintTop_toBottomOf="@id/tl_profile_major"
         android:background="@drawable/border_text_input"
         android:lines="6"
-        android:textAlignment="viewStart"
+        android:inputType="textMultiLine"
+        android:gravity="top|start"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="8dp"
         android:padding="8dp"
+        android:textSize="16sp"
         android:textColorHint="@color/text_color_black"
         android:hint="@string/prompt_description"
         />

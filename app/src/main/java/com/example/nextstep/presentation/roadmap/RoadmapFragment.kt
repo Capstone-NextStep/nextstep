@@ -9,9 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.nextstep.data.Result
-import com.example.nextstep.data.model.Roadmap
 import com.example.nextstep.data.model.RoadmapProgressItem
-import com.example.nextstep.data.model.roadmapList
 import com.example.nextstep.databinding.FragmentRoadmapBinding
 import com.example.nextstep.presentation.ViewModel.RoadmapViewModel
 import com.example.nextstep.presentation.ViewModel.RoadmapViewModelFactory
@@ -23,6 +21,7 @@ import com.google.android.material.snackbar.Snackbar
 class RoadmapFragment : Fragment() {
     private var _binding: FragmentRoadmapBinding? = null
     private val binding get() = _binding!!
+    private var idUser: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
